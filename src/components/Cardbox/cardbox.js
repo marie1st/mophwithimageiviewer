@@ -1,5 +1,6 @@
 import react from 'react';
 import styles from './Cardbox.module.css';
+import {Dateformat} from '../../dateformat';
 
 export function Cardbox(props) {
 
@@ -50,7 +51,7 @@ export function Cardbox(props) {
                     <th width="240px">
                         <div> วัน/เดือน/ปี เกิด</div>
                         <div>DATE OF BIRTH</div>
-                        <div>{props.date_of_birth}</div>
+                        <div><Dateformat date = {props.date_of_birth} /></div>
                     </th>
                 </tr>
                 <tr>
@@ -82,7 +83,7 @@ export function Cardbox(props) {
                         <div>DATE OF ARRIVAL</div>
                     </th>
                     <th>
-                        <div>{props.date_of_arrival}</div>
+                        <div><Dateformat date ={props.date_of_arrival} /></div>
                     </th>
                 </tr>
                 <tr>
@@ -98,7 +99,7 @@ export function Cardbox(props) {
                         <div>DATE OF DEPARTURE</div>
                     </th>
                     <th width="480px">
-                        <div>{props.date_of_departure}</div>
+                        <div><Dateformat date ={props.date_of_departure} /></div>
                     </th>
                 </tr>
                 <tr>
@@ -112,7 +113,7 @@ export function Cardbox(props) {
                     <th width="240px">
                         <div>  วัน/เดือน/ปี</div>
                         <div>DD/MM/YYYY</div>
-                        <div>{props.accom1_date}</div>
+                        <div><Dateformat date={props.accom1_date} /></div>
                     </th>
                 </tr>
                 <tr>
@@ -126,7 +127,7 @@ export function Cardbox(props) {
                     <th width="240px">
                         <div>  วัน/เดือน/ปี</div>
                         <div>DD/MM/YYYY</div>
-                        <div>{props.accom2_date}</div>
+                        <div><Dateformat date ={props.accom2_date} /></div>
                     </th>
                 </tr>
                 <tr>
@@ -140,7 +141,7 @@ export function Cardbox(props) {
                     <th width="240px">
                         <div>  วัน/เดือน/ปี</div>
                         <div>DD/MM/YYYY</div>
-                        <div>{props.accom3_date}</div>
+                        <div><Dateformat date ={props.accom3_date} /></div>
                     </th>
                 </tr>
                 <tr>
@@ -175,7 +176,7 @@ export function Cardbox(props) {
                     <th width="240px">
                         <div>วัน/เดือน/ปี</div>
                         <div>DD/MM/YYYY</div>
-                        <div>{props.health_evisa_date}</div>
+                        <div><Dateformat date={props.health_evisa_date} /></div>
                     </th>
                 </tr>
 
