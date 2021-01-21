@@ -2,13 +2,12 @@ import React from 'react'
 import styles from './Navbar.module.css'
 import { AiFillAppstore } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import { FaBell } from 'react-icons/fa'
-import { Spacer } from '../../components'
 import { CgProfile } from 'react-icons/cg'
 import PropTypes from 'prop-types'
 
 
 export const Navbar = ({ to }) => {
+  const Spacer = require('react-spacer');
   return (
     <nav className={styles.wrapper}>
       <div className={styles.content}>
@@ -18,10 +17,8 @@ export const Navbar = ({ to }) => {
         </Link>
         <div className={styles.profile}>
         <Link to={to} className="flex">
-          <FaBell />
-          <Spacer x={0.5} />
           <CgProfile />
-          <Spacer x={0.5} />Somchai
+          <Spacer width="12px" />Somchai
         </Link>
         </div>
       </div>
@@ -31,5 +28,5 @@ export const Navbar = ({ to }) => {
 
 
 Navbar.propTypes = {
-    to: Proptypes.string.isRequired,
+    to: PropTypes.string.isRequired
 };

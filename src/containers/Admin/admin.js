@@ -1,18 +1,19 @@
 
 import styles from './Admin.module.css';
-import {Router} from 'react-router-dom';
+import {Route, Switch } from 'react-router-dom';
 import { List } from './List/list';
-import {Profile} from './Profile/profile';
-
+import { Menu } from './Menu/Module';
+import { AllList} from './AllList/AllList';
+import { LoginM } from './LoginM/loginM';
 export const AdminRoutes = () =>{
   return (
   <>
-   <div className={styles.profile}>
-     <Profile />
-   </div>
-   <div className={styles.body}>
-     <List />
-   </div>
+   <Switch>
+     <Route exact path="/admin" component={Menu} />
+     <Route path="/admin/Alllist" componet={AllList} />
+     <Route path="/admin/detail" component={List} />
+     <Route path="/admin/login" component={LoginM} />
+   </Switch>
   </>
   );
 }

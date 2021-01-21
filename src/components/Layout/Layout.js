@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 export const Layout = ({ children }) => {
   return (
     <>
-      <Navbar to="/shop" />
+      <Navbar to="/admin" />
       <div className={styles.page}>{children}</div>
     </>
   )
