@@ -3,7 +3,7 @@ import {Router} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import {ImAttachment} from 'react-icons/im';
 import useModal from 'react-hook-usemodal';
-import {Cardbox } from '../../../components/Cardbox/cardbox'
+import {Cardbox } from '../../../components/Cardbox/cardbox';
 
 export const List = () =>{
   const [users, SetUser] = useState([]);
@@ -15,11 +15,11 @@ export const List = () =>{
 useEffect(() =>{
     fetchData();
 }, [])
-
   return (
+   <>
    <div>
        {users.map((user, index) =>(
-     <div>
+     <div className={styles.card}>
          <Cardbox 
          name= {user.given_name}
          middlename= {user.middlename}
@@ -50,5 +50,6 @@ useEffect(() =>{
      </div>
      ))}
    </div>
+   </>
   );
 }

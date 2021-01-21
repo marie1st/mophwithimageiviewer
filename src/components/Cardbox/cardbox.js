@@ -13,7 +13,7 @@ export function Cardbox(props) {
                         <div>GIVEN NAME</div>
                     </th>
                     <th width ="240px">
-                        <div>{props.given_name}</div>
+                        <div>{props.name}</div>
                     </th>
                     <th width="240px">
                         <div>ชื่อกลาง</div>
