@@ -18,7 +18,7 @@ export const Navbar = ({ to }) => {
         <div className={styles.profile}>
         <Link to={to} className="flex">
           <CgProfile />
-          <Spacer width="12px" />Somchai
+          <Spacer width="12px" />Ruengrit
         </Link>
         </div>
       </div>
