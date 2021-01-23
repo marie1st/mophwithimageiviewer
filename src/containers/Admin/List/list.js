@@ -1,16 +1,17 @@
 import styles from './List.module.css';
-import {Router} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import {ImAttachment} from 'react-icons/im';
-import useModal from 'react-hook-usemodal';
 import {Cardbox } from '../../../components/Cardbox/cardbox';
 
-export const List = () =>{
+export const List = (props) =>{
   const [users, SetUser] = useState([]);
+  const [Errors, SetError] = useState(false);
   async function fetchData() {
-      const response = await fetch('http://localhost:3000/users/1')
-    .then(response => response.json())
-    .then(response => SetUser(response));
+      const URL = "http://localhost:3000/users/"+props.id;
+      const response = fetch(URL);
+      if(response.ok) {
+        SetUser((await response).json());
+      } else { SetError(response.data);}
   }
 useEffect(() =>{
     fetchData();

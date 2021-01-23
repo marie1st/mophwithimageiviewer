@@ -11,10 +11,11 @@ export const Menu =() =>{
   /**
    * Page render here
    */
+  const to = "1";
   return (
     <Layout>
       <div>
-          <List/>
+          <List id ={to}/>
       </div>
     </Layout>
   )
