@@ -1,4 +1,4 @@
-import logo from './LogoGoThailandOF.png';
+import logo from './DR.LINK.png';
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AdminRoutes} from './containers';

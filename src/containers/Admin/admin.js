@@ -12,7 +12,7 @@ export const AdminRoutes = () =>{
   <>
    <Switch>
      <Route exact path="/admin" component={Menu} />
-     <Route path="/admin/Alllist" componet={AllList} />
+     <Route path="/admin/all" component={AllList} />
      <Route path="/lists/:listId" component={List} />
      <Route exact path="/login" component={LoginM} />
      <Route path="/profile/:userID" component={Profile} />

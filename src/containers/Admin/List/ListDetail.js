@@ -1,26 +1,23 @@
 import styles from './List.module.css';
-import {Router} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import {ImAttachment} from 'react-icons/im';
-import useModal from 'react-hook-usemodal';
 import {Cardbox } from '../../../components/Cardbox/cardbox';
 
-export const List = () =>{
-  const [users, SetUser] = useState([]);
-  async function fetchData() {
-      const response = await fetch('http://localhost:3000/users/1')
-    .then(response => response.json())
-    .then(response => SetUser(response));
-  }
-useEffect(() =>{
-    fetchData();
-}, [])
-  return (
-   <>
-   <div>
-       {users.map((user, index) =>(
-     <div className={styles.card}>
-         <Cardbox 
+export const ListDetails=(props) =>{
+    const [users, SetUser] = useState([]);
+    async function fetchDetail() {
+        const resp = fetch('http://localhost:3000/users/1')
+        .then(resp => resp.json())
+        .then(resp => SetUser(resp));
+    }
+    useEffect(()=>{
+        fetchDetail();
+    }, [])
+
+    return (
+        <div>
+        {users.map((user, index)=>(
+            <Cardbox 
          name= {user.given_name}
          middlename= {user.middlename}
          lastname= {user.lastname}
@@ -45,11 +42,7 @@ useEffect(() =>{
          health_evisa_date = {user.health_evisa_date}
 
          />
-        
-         <ImAttachment /><a href= {`/path/${user.health_evisa}`} >Link to Fit-to-Fly Certificate</a>
-     </div>
-     ))}
-   </div>
-   </>
-  );
+         ))}
+        </div>
+    )
 }

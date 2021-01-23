@@ -3,6 +3,9 @@ import { Layout } from '../../../components/Layout/Layout';
 import styles from './Menu.module.css';
 import {AllList } from '../AllList/AllList';
 import {List} from '../List/list';
+import {ListDetails} from '../List/ListDetail';
+
+import CustomPaginationActionsTable from '../CustomPaginationActionsTable/CustomPaginationActionsTable';
 
 export const Menu =() =>{
   /**
@@ -11,7 +14,7 @@ export const Menu =() =>{
   return (
     <Layout>
       <div>
-          <List />
+          <List/>
       </div>
     </Layout>
   )

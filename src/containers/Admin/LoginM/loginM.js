@@ -1,9 +1,10 @@
-import react, {Component} from 'react';
+import React, {Component} from 'react';
+import styles from './LoginM.module.css';
 
-export const LoginM =() =>{
-{
-    return ( <section className="section container">
-    <div className="columns is-centered">
+export class LoginM extends React.Component{
+render ( ) {
+    return ( <section className={styles.section_container}>
+    <div className={styles.columns_is_centered}>
       <div className="column is-half">
         <form>
           <div className="field">
@@ -19,13 +20,15 @@ export const LoginM =() =>{
               <input className="input" type="password" name="password" />
             </div>
           </div>
-
-          <div className="field is-grouped">
-            <div className="control">
-              <button className="button is-link">เข้าสู่ระบบ</button>
-            </div>
-            <div className="control">
-              <button className="button is-text">ยกเลิก</button>
+          <div className="outer">
+            <div className="field is-grouped">
+              <div className="inner">
+                <button className="button" >เข้าสู่ระบบ</button>
+              </div>
+              <hr></hr>
+              <div className="inner">
+                <button className="button"> สมัครสมาชิก</button>
+              </div>
             </div>
           </div>
         </form>

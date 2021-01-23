@@ -1,7 +1,15 @@
 import React, {useState, useEffect} from 'react'
-import { Card, Table, Button } from '../../../components'
 import styles from './AllList.module.css'
-import { FaDollarSign }from 'react-icons/fa'
+import { makeStyles, useTheme} from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import {Dateformat } from '../../../dateformat';
 //import { SearchBox } from '../../../../../src/components/Input/SearchBox'
 //import { Calendar } from '../../../../../src/components/Input/Calendar'
 
@@ -9,10 +17,19 @@ import { FaDollarSign }from 'react-icons/fa'
 /**
  * Define each field of headers
  */
-const headers = ['วันที่', 'หมายเลขพาสปอร์ต', 'ชื่อ-นามสกุล', 'สถานะ', 'ดูรายละเอียด', ''];
+const useStyles = makeStyles({
+  table: {
+    minWidth: 650,
+  },
+});
+
 export const AllList = () => {
   const Spacer = require('react-spacer');
-  const [users, SetUser] = useState([]);
+  const [rows, SetUser] = useState([]);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const classes = useStyles();
+
 async function fetchData() {
   const response = await fetch('http://localhost:3000/users')
         .then(response => response.json())
@@ -21,34 +38,87 @@ async function fetchData() {
 useEffect(() =>{
     fetchData();
 }, [])
+
+const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  const useStyles1 = makeStyles((theme) => ({
+    root: {
+      flexShrink: 0,
+      marginLeft: theme.spacing(2.5),
+    },
+  }));
+
+  function TablePaginationActions(props) {
+    const classes = useStyles1();
+    const theme = useTheme();
+    const { count, page, rowsPerPage, onChangePage } = props;
+  
+    const handleFirstPageButtonClick = (event) => {
+      onChangePage(event, 0);
+    };
+  
+    const handleBackButtonClick = (event) => {
+      onChangePage(event, page - 1);
+    };
+  
+    const handleNextButtonClick = (event) => {
+      onChangePage(event, page + 1);
+    };
+  
+    const handleLastPageButtonClick = (event) => {
+      onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+    };
+  }
+
   return (
-    <Card.Container>
-      <Card.Body>
-            <div className={`${styles.wrapperHeader}`}>
+        <div className={`${styles.wrapperHeader}`}>
             <div className={`${styles.wrapperHeaderContent} font-xl weight-md`}>
-              <FaDollarSign /> <Spacer width="12px" />   รายงานรายชื่อนักท่องเที่ยวที่ขอทำ Health-Evisa
+              รายงานรายชื่อนักท่องเที่ยวที่ขอทำ Health-Evisa
               <Spacer width="24px" />
               
             </div>
-            <div className='flex'>
-              
-            </div>
-            </div>
+        
 
-        <Table.Container className={styles.space}>
-          <Table.Header headers={headers} />
-          {users.map((stock, index) => (
-            <Table.Row key={stock.id}>
-              <Table.Col>{index + 1}</Table.Col>
-              <Table.Col>{stock.product_name}</Table.Col>
-              <Table.Col>{stock.product_brand}</Table.Col>
-              <Table.Col>{stock.product_generation}</Table.Col>
-              <Table.Col>{stock.product_price}</Table.Col>
-              <Table.Col>_</Table.Col>
-            </Table.Row>
+        
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>วันที่</TableCell>
+            <TableCell align="right">หมายเลขพาสปอร์ต</TableCell>
+            <TableCell align="right">ชื่อ-นามสกุล</TableCell>
+            <TableCell align="right">สถานะ</TableCell>
+            <TableCell align="right">ดูรายละเอียด</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row, index) => (
+            <TableRow key={index}>
+              <TableCell component="th" scope="row">
+                <Dateformat date = {row.created_at}/>
+              </TableCell>
+              <TableCell align="right">{row.passport_no}</TableCell>
+              <TableCell align="right">{row.given_name + " " + row.middlename + " " + row.lastname}</TableCell>
+              <TableCell align="right">{row.health_evisa}</TableCell>
+              <TableCell align="right"><Dateformat date ={row.health_evisa_date} /></TableCell>
+             
+            </TableRow>
           ))}
-        </Table.Container>
-      </Card.Body>
-    </Card.Container>
+        </TableBody>
+      </Table>
+    </TableContainer>
+    
+
+    </div>
+
   )
 }
