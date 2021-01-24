@@ -1,24 +1,22 @@
 import React, {Component} from 'react';
-import styles from './LoginM.module.css';
-import {Link, Redirect } from 'react-router-dom';
+import styles from './reset.module.css';
+import {Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 export default class LoginM extends React.Component{
 constructor(props) {
   super(props);
-  this.state = {email: '', password: '', token: '', fireRedirect: false}
+  this.state = {password: '', fireRedirect: false}
 }
 handleSubmit =e=> {
   e.preventDefault();
 
   const data = {
-    email: this.email,
     password: this.password
   };
 
-  axios.post('http://localhost:8000/login', data)
+  axios.post('http://localhost:8000/reset', data)
     .then(res=> {
-      localStorage.setItem('token', res.data.token);
       this.setState({fireRedirect: true})
     })
     .catch(err =>{
@@ -26,22 +24,16 @@ handleSubmit =e=> {
     })
 
   if(this.state.fireRedirect) {
-    return <Redirect to="/admin" />
+    return <Redirect to="/login" />
   }
 
 }
 render ( ) {
-  const to = "/register";
     return ( <section className={styles.section_container}>
     <form onSubmit={this.handleSubmit}>
     <div className={styles.columns_is_centered}>
       <div className="column is-half">
-          <div className="form-control">
-            <label className="label">อีเมล์</label>
-            <div className="control">
-              <input className="form-control" type="email" name="email" placeholder="email" onChange ={e=>this.email = e.target.value}/>
-            </div>
-          </div>
+      
 
           <div className="form-control">
             <label className="label">รหัสผ่าน</label>
@@ -54,12 +46,7 @@ render ( ) {
               <div className="inner">
                 <button className="button" type="submit">เข้าสู่ระบบ</button>
               </div>
-              <hr></hr>
-              <div className="inner">
-                <Link to={to} >
-                <button className="button"> สมัครสมาชิก</button>
-                </Link>
-              </div>
+           
             </div>
           </div>
       </div>

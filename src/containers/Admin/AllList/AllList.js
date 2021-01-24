@@ -106,7 +106,9 @@ const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsP
               <TableCell component="th" scope="row">
                 <Dateformat date = {row.created_at}/>
               </TableCell>
+              <Link to ={`lists/${id}`}>
               <TableCell align="right">{row.passport_no}</TableCell>
+              </Link>
               <TableCell align="right">{row.given_name + " " + row.middlename + " " + row.lastname}</TableCell>
               <TableCell align="right">{row.health_evisa}</TableCell>
               <TableCell align="right"><Dateformat date ={row.health_evisa_date} /></TableCell>

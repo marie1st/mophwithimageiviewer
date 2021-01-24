@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';
 import {ImAttachment} from 'react-icons/im';
 import {Cardbox } from '../../../components/Cardbox/cardbox';
 
-export const List = (props) =>{
+function List ({match}) {
   const [users, SetUser] = useState([]);
   const [Errors, SetError] = useState(false);
   async function fetchData() {
-      const URL = "http://localhost:3000/users/"+props.id;
+      const URL = `http://localhost:3000/users/${match.params.listId}`;
       const response = fetch(URL);
       if(response.ok) {
         SetUser((await response).json());
@@ -15,6 +15,7 @@ export const List = (props) =>{
   }
 useEffect(() =>{
     fetchData();
+    console.log(match);
 }, [])
   return (
    <>
@@ -54,3 +55,5 @@ useEffect(() =>{
    </>
   );
 }
+
+export default List;
