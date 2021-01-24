@@ -6,7 +6,7 @@ import { CgProfile } from 'react-icons/cg'
 import PropTypes from 'prop-types'
 
 
-export const Navbar = ({ to }) => {
+export const Navbar = ({ to, user_name, user_id }) => {
   const Spacer = require('react-spacer');
   return (
     <nav className={styles.wrapper}>
@@ -16,9 +16,9 @@ export const Navbar = ({ to }) => {
           เมนูหลัก
         </Link>
         <div className={styles.profile}>
-        <Link to={to} className="flex">
+        <Link to={`http://localhost:3000/${user_id}`} className="flex">
           <CgProfile />
-          <Spacer width="12px" />Ruengrit
+          <Spacer width="12px" />{user_name}
         </Link>
         </div>
       </div>
@@ -28,5 +28,7 @@ export const Navbar = ({ to }) => {
 
 
 Navbar.propTypes = {
-    to: PropTypes.string.isRequired
+    to: PropTypes.string.isRequired,
+    user: PropTypes.string.isRequired,
+    user_id: PropTypes.number.isRequired
 };

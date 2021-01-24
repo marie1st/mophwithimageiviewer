@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
  */
 
 
-export const Layout = ({ children }) => {
+export const Layout = ({ children, user_name, user_id }) => {
   return (
     <>
       <Navbar to="/admin" />
@@ -18,5 +18,7 @@ export const Layout = ({ children }) => {
 }
 
 Layout.propTypes= {
-    children: PropTypes.element.isRequired
+    children: PropTypes.element.isRequired,
+    user_name: PropTypes.string,
+    user_id: PropTypes.number
   };
