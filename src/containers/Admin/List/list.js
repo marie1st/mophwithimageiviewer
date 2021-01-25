@@ -5,7 +5,7 @@ import {Cardbox } from '../../../components/Cardbox/cardbox';
 import axios from 'axios';
 
 function List ({match}) {
-  const [users, SetUser] = useState([]);
+  const [customers, SetCustomer] = useState();
   const [Errors, SetError] = useState(false);
   async function fetchData() {  
     const URL = `http://localhost:3000/users/${match.params.listId}`;
@@ -13,7 +13,7 @@ function List ({match}) {
     .get(URL)
     .then(response => {
       console.log("response: ", response.data);
-      SetUser(response.data);
+      SetCustomer(response.data);
       // do something about response
     })
     .catch(err => {
@@ -30,7 +30,7 @@ useEffect(() =>{
   return (
    <>
    <div>
-       {users.map((user, index) =>(
+       {customers.map((user, index) =>(
      <div className={styles.card}>
          <Cardbox 
          name= {user.given_name}
