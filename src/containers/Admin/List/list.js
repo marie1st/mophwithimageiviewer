@@ -2,20 +2,30 @@ import styles from './List.module.css';
 import React, { useState, useEffect } from 'react';
 import {ImAttachment} from 'react-icons/im';
 import {Cardbox } from '../../../components/Cardbox/cardbox';
+import axios from 'axios';
 
 function List ({match}) {
   const [users, SetUser] = useState([]);
   const [Errors, SetError] = useState(false);
-  async function fetchData() {
-      const URL = `http://localhost:3000/users/${match.params.listId}`;
-      const response = fetch(URL);
-      if(response.ok) {
-        SetUser((await response).json());
-      } else { SetError(response.data);}
+  async function fetchData() {  
+    const URL = `http://localhost:3000/users/${match.params.listId}`;
+    axios
+    .get(URL)
+    .then(response => {
+      console.log("response: ", response.data);
+      SetUser(response.data);
+      // do something about response
+    })
+    .catch(err => {
+      console.error(err);
+      SetError(true);
+    });
+      
   }
 useEffect(() =>{
     fetchData();
     console.log(match);
+    console.log(match.url);
 }, [])
   return (
    <>

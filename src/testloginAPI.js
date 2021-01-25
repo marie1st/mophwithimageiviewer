@@ -1,4 +1,17 @@
-var axios = require('axios');
-params = {email: 'marie@test.com', password: '123456'};
-const response = axios.post("/login", params);
-console.log(response);
+
+const axios = require('axios');
+
+function getapi() {
+axios
+    .get("http://localhost:3000/users/")
+    .then(response => {
+      console.log("response: ", response.data);
+      console.log("data:", response.data);
+      // do something about response
+    })
+    .catch(err => {
+      console.error(err)
+    });
+}
+
+getapi();

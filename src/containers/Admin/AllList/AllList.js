@@ -10,6 +10,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Dateformat } from '../../../dateformat';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
 //import { SearchBox } from '../../../../../src/components/Input/SearchBox'
 //import { Calendar } from '../../../../../src/components/Input/Calendar'
 
@@ -25,15 +27,22 @@ const useStyles = makeStyles({
 
 export const AllList = () => {
   const Spacer = require('react-spacer');
-  const [rows, SetUser] = useState([]);
+  const [rows, SetRows] = useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const classes = useStyles();
 
 async function fetchData() {
-  const response = await fetch('http://localhost:3000/users')
-        .then(response => response.json())
-        .then(response => SetUser(response));
+  axios
+    .get("http://localhost:3000/users/")
+    .then(response => {
+      console.log("response: ", response.data);
+      SetRows(response.data);
+      // do something about response
+    })
+    .catch(err => {
+      console.error(err)
+    });
 }
 useEffect(() =>{
     fetchData();
@@ -106,9 +115,9 @@ const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsP
               <TableCell component="th" scope="row">
                 <Dateformat date = {row.created_at}/>
               </TableCell>
-              <Link to ={`lists/${id}`}>
-              <TableCell align="right">{row.passport_no}</TableCell>
-              </Link>
+              
+              <TableCell align="right"><Link to ={`lists/${row.id}`}>{row.passport_no}</Link></TableCell>
+              
               <TableCell align="right">{row.given_name + " " + row.middlename + " " + row.lastname}</TableCell>
               <TableCell align="right">{row.health_evisa}</TableCell>
               <TableCell align="right"><Dateformat date ={row.health_evisa_date} /></TableCell>
