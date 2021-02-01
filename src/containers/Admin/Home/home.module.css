@@ -1,0 +1,37 @@
+.activeset:active {
+    background: white;
+    border-radius: 5px;
+    color: black;
+    width: 150px;
+    height: 50px;
+    display: inline;
+}
+
+.setflex {
+    display: flex;
+    margin: auto;
+}
+
+.link:hover {
+    background-color: white;
+    color: black;
+    border-radius: 50px;
+    width: auto;
+    height: auto;
+}
+
+.buttonclear {
+    background-image: url('../../../Buttonclear.png');
+    font-family:sans-serif;
+    font-size: 22px;
+    background: inherit;
+}
+
+.buttonclear:hover {
+    background-color: white;
+    width :initial;
+    height: initial;
+    border-radius: 50px;
+    color: black;
+
+}

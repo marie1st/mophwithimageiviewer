@@ -1,28 +1,37 @@
-import axios from 'axios';
+
 import React from 'react';
 import axios from 'axios';
+import styles from './Login.css';
 
 class LoginRoutes extends React.Component {
   handleSubmit= e => {
     e.preventDefault();
     const data = { 
       email: this.email,
-      password: this.password
+      password: this.password,
+      fireRedirect: false,
+      token: '',
     };
 
     axios.post('http://localhost:8000/login', data).then(
       res=>{
         console.log(res);
+        this.setState({fireRedirect: true});
+        localStorage.setItem('token', res.data.token);
       }
     ).catch(
       err=>{
         console.log(err);
       }
     );
+
+    if (this.state.fireRedirect) {
+      return <Redirect to ={'/home/'}/>
+    }
   }
   render() {
     return (
-      <section className="section container">
+      <section className={`${styles.section_container}`}>
         <form onsubmit={this.handleSubmit}>
         <div className="columns is-centered">
           <div className="column is-half">

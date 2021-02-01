@@ -1,0 +1,187 @@
+.section_container {
+    display:flexbox;
+    background-image: url('../../../white.png');
+    border-radius: 30px;
+    width: 400px;
+    height: 550px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.section_containerer {
+    display:flexbox;
+    background-image: url('../../../white.png');
+    border-radius: 30px;
+    width: 1100px;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.section_containerest {
+    display:flexbox;
+    background-image: url('../../../white.png');
+    border-radius: 30px;
+    width: 800px;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+.column_is_center {
+    background-color: white;
+    width: 150px;
+    height: 550px;
+}
+
+input {
+    width: 300px;
+    height: 40px;
+    border-radius: 90px;
+}
+
+.button {
+  background-color:rgba(6, 78, 173, 0.514); 
+  border-radius: 50px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width: 300px;
+  height: 50px;
+  display: inline-block;
+}
+
+#outer
+{
+    width:100%;
+    text-align: center;
+}
+.inner
+{
+    display: inline-block;
+}
+
+.labelhead {
+    font-family: sans-serif;
+    font-size: 28px;
+    color: white;
+}
+
+.control {
+    display: inline-block;
+    color: white;
+}
+
+.checkbox {
+    width: 15px;
+    height: 15px;
+}
+
+.labelspace {
+    background: inherit;
+    content: " ";
+}
+
+span:before {
+    content: '';
+    width: 100%;
+    height: 1em;
+    display: inline-block;
+    background: inherit; /* Remove, just showing empty line */
+  }
+
+  span {
+    display: inline-block; /* Can remove if span:before width doesn't matter. */
+  }
+
+ul {list-style: none}
+
+ul li {padding: 8px 0}
+
+table {
+    border-collapse: collapse;
+}
+
+table, tr, td {
+    border: none;
+    padding: 5px;
+}
+
+.section_control {
+    white-space: nowrap;
+    display: inline-block;
+    overflow-x: auto;
+}
+
+label {
+    vertical-align: middle;
+}
+
+input[type="radio"] {
+    vertical-align: middle;
+}
+
+section_table {
+    border: 1px black;
+}
+
+.card {
+    color: white;
+}
+
+.status {
+    border:none;
+    background: inherit;
+    color: white;
+    font-size: 33px;
+}
+
+.description {
+    background: inherit;
+    color: white;
+    font-size: 10px;
+}
+
+.printout {
+    background-color:rgba(8, 181, 204, 0.726); 
+    border-radius: 50px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 300px;
+    height: 50px;
+    display: inline-block;
+  }
+  
+.section_dno{
+    width: 20%;
+    height: 20%;
+}
+
+.button_display{
+    width: 150px;
+    height: 30px;
+    border-radius: 90px;
+    background-color: white;
+    color: black;
+    
+}
+
+.section_containerhead {
+    color: white;
+    font-size: 33px;
+}
+
+.section_foot {
+    color: white;
+    font-size: 13px;
+}
+

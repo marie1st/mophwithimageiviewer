@@ -52,14 +52,11 @@ render ( ) {
           <div className="outer">
             <div className="field is-grouped">
               <div className="inner">
-                <button className="button" type="submit">เข้าสู่ระบบ</button>
+              <span>
+                <button type="submit">เข้าสู่ระบบ</button>
+              </span>
               </div>
-              <hr></hr>
-              <div className="inner">
-                <Link to={to} >
-                <button className="button"> สมัครสมาชิก</button>
-                </Link>
-              </div>
+        
             </div>
           </div>
       </div>
