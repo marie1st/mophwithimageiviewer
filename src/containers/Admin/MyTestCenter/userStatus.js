@@ -5,6 +5,7 @@ import {Cardbox } from '../../../components/Cardbox/cardbox';
 import axios from 'axios';
 
 function UserStatus ({match}) {
+  const Customerlis = [{given_name: 'Ingrid', lastname: 'Figma', middlename: 'M.', sex: 'Male', nationality: 'American', passport_no: '1234556', health_evisa_date: '2021-05-12T08:00:00.000Z'}];
   const [Users, SetUser] = useState([]);
   const [Errors, SetError] = useState(false);
   async function fetchData() {  
@@ -30,7 +31,7 @@ useEffect(() =>{
   return (
    <>
    <div className={`${styles.section_containerest}`}>
-       {Users.map((user, index) =>(
+       {Customerlis.map((user, index) =>(
      <div className={styles.card}>
         <table>
             <tr>

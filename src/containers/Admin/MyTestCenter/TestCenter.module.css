@@ -20,6 +20,17 @@
     margin: auto;
 }
 
+.section_containerestest {
+    display:flexbox;
+    background-image: url('../../../white.png');
+    border-radius: 30px;
+    width: 800px;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
 .section_containerest {
     display:flexbox;
     background-image: url('../../../white.png');
@@ -29,6 +40,8 @@
     align-items: center;
     justify-content: center;
     margin: auto;
+    color: white;
+    font-size: 28px;
 }
 .column_is_center {
     background-color: white;
@@ -132,6 +145,14 @@ section_table {
 
 .card {
     color: white;
+    text-align: justify;
+    text-justify: inter-word;
+    padding-left: 100px;
+}
+
+.card_status{
+    color: white;
+    text-align: center;
 }
 
 .status {
@@ -139,14 +160,28 @@ section_table {
     background: inherit;
     color: white;
     font-size: 33px;
+    text-align: center;
 }
 
 .description {
     background: inherit;
     color: white;
-    font-size: 10px;
+    font-size: 18px;
 }
 
+.description1 {
+    display: none;
+}
+
+.Note1 {
+    display:none;
+}
+
+.Note {
+    background: inherit;
+    color: white;
+    font-size: 18px;
+}
 .printout {
     background-color:rgba(8, 181, 204, 0.726); 
     border-radius: 50px;
@@ -178,6 +213,8 @@ section_table {
 .section_containerhead {
     color: white;
     font-size: 33px;
+    text-align: center;
+    justify-content: center;
 }
 
 .section_foot {
@@ -185,3 +222,15 @@ section_table {
     font-size: 13px;
 }
 
+TENTH {
+    display:none;
+}
+
+ELEVENTH {
+    color: white;
+    font-size: 20px;
+}
+
+.container_center {
+    padding-left: 240px;
+}

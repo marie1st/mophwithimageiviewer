@@ -45,14 +45,15 @@ useEffect(() =>{
    <div className={`${styles.section_containerest}`}>
        Test Examination Result
        {Userslist.map((user, index) =>(
-     <div className={`${styles.card}`}>
+     <div className={`${styles.card_status}`}>
          <button className={`${styles.status}`}>APPROVE</button>
         <div className={`${styles.description}`}>
         <span><div>Mail result to Go Thailand</div></span>
-     </div>
+     
         <div>
             <button className={`${styles.printout}`} >SEND</button>
         </div>
+    </div>
     </div>
      ))}
    </div>

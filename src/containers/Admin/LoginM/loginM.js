@@ -37,14 +37,14 @@ render ( ) {
     <div className={styles.columns_is_centered}>
       <div className="column is-half">
           <div className="form-control">
-            <label className="label">อีเมล์</label>
+            <label className="label">Email</label>
             <div className="control">
               <input className="form-control" type="email" name="email" placeholder="email" onChange ={e=>this.email = e.target.value}/>
             </div>
           </div>
 
           <div className="form-control">
-            <label className="label">รหัสผ่าน</label>
+            <label className="label">Password</label>
             <div className="control">
             <input className="form-control" type="password" name="password" placeholder ="password" onChange={e=>this.password = e.target.value}/>
             </div>
@@ -53,7 +53,7 @@ render ( ) {
             <div className="field is-grouped">
               <div className="inner">
               <span>
-                <button type="submit">เข้าสู่ระบบ</button>
+                <button type="submit">Submit</button>
               </span>
               </div>
         

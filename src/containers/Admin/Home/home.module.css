@@ -12,14 +12,6 @@
     margin: auto;
 }
 
-.link:hover {
-    background-color: white;
-    color: black;
-    border-radius: 50px;
-    width: auto;
-    height: auto;
-}
-
 .buttonclear {
     background-image: url('../../../Buttonclear.png');
     font-family:sans-serif;

@@ -1,37 +1,28 @@
+import React, { useEffect } from 'react';
 import logo from './DR.LINK.png';
 import './App.css';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, useLocation} from 'react-router-dom';
 import { AdminRoutes} from './containers';
 import { UserRoutes } from './containers';
 import Home from './containers/Admin/Home/home'
 
-function App() {
-  if(window.location.toString().indexOf("?register") === 1) {
-    return (
-      <div className="App">
-         <div className="display">
-            <img src={logo} alt="logo" />
-        </div>
-     <Router>
-       <Home />
-       <AdminRoutes />
-      
-     </Router>
-    </div>
-    )  
-  }
-  return (
 
+function App() { 
+  
+  const location = window.location.pathname;
+  console.log(location);
+  return (
+    <Router>
     <div className="App">
-         <div className="display_left">
+         <div className={window.location.pathname != "/register" ? "display_left": "display"}>
             <img src={logo} alt="logo" />
         </div>
-     <Router>
+     
        <Home />
        <AdminRoutes />
-      
+    </div>  
      </Router>
-    </div>
+    
   );
 }
 

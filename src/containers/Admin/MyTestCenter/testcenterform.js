@@ -3,6 +3,7 @@ import styles from './TestCenter.module.css';
 import {Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
+
 export default class Testcenterform extends React.Component{
 constructor(props) {
   super(props);
@@ -14,6 +15,8 @@ constructor(props) {
 onChangeValue =e=>{
     this.setState({test: e.target.value});
 }
+
+
 
 handleSubmit =e=> {
   e.preventDefault();
@@ -120,10 +123,10 @@ render ( ) {
             </div>
         </div>
 
-        <div className="form-control">
-            <tr><td width="155"></td>
+        <div className={`${styles.container_center}`}>
+            <tr><td width="205"></td>
             <td width="300">
-            <input className="form-control" placeholder="Test Date/Month/Year" type="text" name="test_date" onChange={e=>this.test_date = e.target.value}/>
+            <input className="form-control" placeholder="Test Date/Month/Year" type="text" name="test_date" onChange={e=>this.test_date = e.target.value}></input>
             </td></tr>
         </div>
         

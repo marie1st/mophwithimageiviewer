@@ -20,6 +20,7 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
+    "react-file-previewer": "^0.6.3",
     "react-hook-usemodal": "^1.1.0",
     "react-icons": "^4.1.0",
     "react-node": "^1.0.2",

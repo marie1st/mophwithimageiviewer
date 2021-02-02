@@ -1,7 +1,7 @@
 import styles from './TestCenter.module.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { thumbnailPlugin, Viewer } from '@react-pdf-viewer/thumbnail';
+import FilePreviewerThumbnail from 'react-file-previewer';
 
 // Import styles
 import '@react-pdf-viewer/thumbnail/lib/styles/index.css';
@@ -9,7 +9,6 @@ import '@react-pdf-viewer/thumbnail/lib/styles/index.css';
 
 function Mophindividual ({match}) {
   const params = [{example: true}];
-  const thumbnailPluginInstance = thumbnailPlugin();
   const [Customers, SetCustomer] = useState([]);
   const [Errors, SetError] = useState(false);
 
@@ -50,7 +49,7 @@ useEffect(() =>{
 }, [])
   return (
    <>
-   <div className={`${styles.section_containerest}`}>
+   <div className={`${styles.section_containerestest}`}>
      
    <label className={`${styles.labelhead}`} ><span>Check List</span></label>
        
@@ -60,59 +59,59 @@ useEffect(() =>{
         <table>
            <tr>
              
-             <td width="50">Given Name:</td>
+             <td width="100">Given Name:</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.given_name}</div></td>
-             <td width="50">Nationality:</td>
+             <td width="100">Nationality:</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.nationality}</div></td>
             
            </tr>
            <tr>
 
-             <td width="50">Family Name:</td>
+             <td width="100">Family Name:</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.lastname}</div></td>
-             <td width="50">Passport No.:</td>
+             <td width="100">Passport No.:</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.passport_no}</div></td>
            </tr>
            <tr>
-             <td width="50">Middle Name:</td>
+             <td width="100">Middle Name:</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.middlename}</div></td>
-             <td width="50">Arrival Date:</td>
+             <td width="100">Arrival Date:</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.arrival_date}</div></td>
            </tr>
            <tr>
-             <td width="50">Other Names:</td>
+             <td width="100">Other Names:</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.other_name}</div></td>
-             <td width="50">Departure Date:</td>
+             <td width="100">Departure Date:</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.departure_date}</div></td>
            </tr>
            <tr>
-             <td width="50">Sex:</td>
+             <td width="100">Sex:</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.sex}</div></td>
-             <td width="50">Flight:</td>
+             <td width="100">Flight:</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.flight_no}</div></td>
            </tr>
            <tr>
-             <td width="50">Date of Birth:</td>
+             <td width="100">Date of Birth:</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.date_of_birth}</div></td>
-             <td width="50">City:</td>
+             <td width="100">City:</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.city}</div></td>
            </tr>
            <tr>
-             <td width="50">Country of Birth</td>
+             <td width="100">Country of Birth</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.country_of_birth}</div></td>
-             <td width="50">Hotel</td>
+             <td width="100">Hotel</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.accommodation1}</div></td>
            </tr>
          </table>
          <div className={`${styles.section_containhead}`} >Test Examination Result</div>
-         <a href= {`/path/${user.health_evisa_path1}`} >
-          PDF1
+         <a href= {`/path${user.health_evisa_path1}`} >
+          <FilePreviewerThumbnail file={{url: "http://www.africau.edu/images/default/sample.pdf"}}/> 
           </a>
           <div className={`${styles.section_foot}`} >Covid-19 Test Certification Form</div>
 
          <div className={`${styles.section_containhead}`} >Test Examination Result</div>
-         <a href= {`/path/${user.health_evisa_path2}`} >
-           PDF2
+         <a href= {`/path${user.health_evisa_path2}`} >
+           <FilePreviewerThumbnail file={{url: "http://www.africau.edu/images/default/sample.pdf"}} />
          </a>
          <div className={`${styles.section_foot}`} >Fit-to-Fly Form</div>
          </div>

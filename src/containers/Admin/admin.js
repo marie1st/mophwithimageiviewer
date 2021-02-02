@@ -38,7 +38,7 @@ export const AdminRoutes = () =>{
      <Route exact path="/users/status/:userId" component={Status }/>
      <Route exact path="/users/status/details/:userId" component={StatusUserDetail} />
      <Route exact path="/test_center/mytestcenter2" component={Testcenterform} />
-     <Route exact path="/test_center/mytestcentor" component={Testlist} />
+     <Route exact path="/test_center/mytestcenter" component={Testlist} />
      <Route exact path="/test_center/:userId" component={Testlistind} />
      <Route exact path="/test_center/status/:userId" component={StatusTestCenter} />
      <Route exact path="/moph/mophlist" component={Mophlist} />

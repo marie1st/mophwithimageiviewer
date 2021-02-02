@@ -14,6 +14,8 @@ import Paper from '@material-ui/core/Paper';
 import {Dateformat } from '../../../dateformat';
 
 function Testlist ({}) {
+
+    const Customerls = [{given_name: 'Maria', lastname: 'Sherapova', sex: 'Female', nationality: 'Russian', health_evisa_date: '021-05-12T08:00:00.000Z', passport_no: '12345566'}]
     const useStyles = makeStyles({
       table: {
         minWidth: 650,
@@ -60,16 +62,16 @@ function Testlist ({}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Customerlists.map((row, index) => (
+          {Customerls.map((row, index) => (
             <TableRow key={index}>
               <TableCell component="th" scope="row">
                   {row.given_name}
               </TableCell>
-              <TableCell align="right">{row.lastname}</TableCell>
-              <TableCell align="right">{row.sex}</TableCell>
-              <TableCell align="right">{row.nationality}</TableCell>
-              <TableCell align="right"><Link to ={`lists/${row.id}`}>{row.passport_no}</Link></TableCell>
-              <TableCell align="right"><Dateformat date ={row.health_evisa_date} /></TableCell>
+              <TableCell component="th" scope="row" align="right">{row.lastname}</TableCell>
+              <TableCell component="th" scope="row" align="right">{row.sex}</TableCell>
+              <TableCell component="th" scope="row" align="right">{row.nationality}</TableCell>
+              <TableCell component="th" scope="row" align="right"><Link to ={`lists/${row.id}`}>{row.passport_no}</Link></TableCell>
+              <TableCell component="th" scope="row" align="right"><Dateformat date ={row.health_evisa_date} /></TableCell>
              
             </TableRow>
           ))}

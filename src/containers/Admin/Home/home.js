@@ -39,7 +39,7 @@ export default class Home extends Component {
             )
         }
 return (
-    <div className ={`${styles.link}`}>
+    <div>
         <Link to='/login' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 33}}><button className={`${styles.buttonclear}`} >Home</button></Link>
         <Link to='/mytestcenter' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 33}}><button className={`${styles.buttonclear}`}>My Test Center</button></Link>
         <Link to='/register' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 33}}><button className={`${styles.buttonclear}`}>Register</button></Link>
