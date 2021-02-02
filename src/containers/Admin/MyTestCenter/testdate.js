@@ -1,54 +1,76 @@
-import React, {Component} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import styles from './TestCenter.module.css';
 import {Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import { SettingsSystemDaydreamTwoTone } from '@material-ui/icons';
 
-export default class MyTestCenter2 extends React.Component{
-constructor(props) {
-  super(props);
-  this.state = {testcenter_date: '', test: '', fireRedirect: false};
-  this.handleSubmit = this.handleSubmit.bind(this);
-  this.onChangeValue = this.onChangeValue.bind(this);
-}
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+}));
 
-onChangeValue =e=>{
-    this.setState({test: e.target.value});
+
+export default function MyTestCenter2 (){
+
+  const classes = useStyles();
+
+  const [Testcenter_date, SetDate] = useState();
+  const [TestData, SetTest] = useState();
+  const [FireRedirect, SetFire] = useState();
+  const [Covid_test, SetCovid] = useState();
+  const [Fit_test, SetFit] = useState();
+
+
+const onChangeValue =e=>{
+    SetTest(e.target.value);
 }
-handleSubmit =e=> {
+const handleSubmit =e=> {
   e.preventDefault();
 
-  const data = {
-    testcenter_date: this.testcenter_date,
-    covid_test: this.covid_test,
-    fit_test: this.fit_test,
-  };
-
-  axios.post('http://localhost:3000/testcenter2', data)
+  axios.post('http://localhost:3000/testcenter2', {testcenter_date: Testcenter_date, test: TestData})
     .then(res=> {
-      this.setState({fireRedirect: true});
+      SetFire(true);
     })
     .catch(err =>{
       console.log(err)
     })
-  if (this.state.fireRedirect) {
+  if (FireRedirect) {
     return <Redirect to ={'/home/'}/>
   }
 }
-render ( ) {
+
     return ( 
     <section className={styles.section_container}>
-    <form onSubmit={this.handleSubmit} >
+    <form onSubmit={handleSubmit} >
     <div className={styles.columns_is_centered}>
       <label className={`${styles.labelhead}`} ><span>MY Test Center</span></label>
       
         <div className="form">
             <div className="control">
               <span>
-              <input className="form-control" placeholder ="Test Date/Month/Year" type="text" name="testcenter_date"  onChange ={e=>this.testcenter_date= e.target.value}/>
-              </span>
+              <div className={`${styles.date_box}`}>
+              <form className={classes.container} noValidate>
+                    <TextField
+                      id="date"
+                      type="date"
+                      defaultValue="Test Date/Month/Year"
+                      className={classes.textField}
+                      onChange={(date)=> SetDate(date)}
+                    />
+              </form>
+              </div></span>
             </div>
         </div>
-        <div Onchange={this.onChangeValue}>
+        <div Onchange={onChangeValue}>
         
             <span>
         <input className={`${styles.checkbox}`} type="radio" name="test" value="covid_test"/>
@@ -75,5 +97,4 @@ render ( ) {
     </form>
   </section>
     )
-}
 }
