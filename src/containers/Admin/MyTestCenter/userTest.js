@@ -35,26 +35,29 @@ useEffect(() =>{
      <div className={`${styles.card_status}`}>
          <button className={`${styles.status}`}>{user.status}</button>
          
-        <div className={`${user.status}`=== "APPROVE" ? "`${styles.description}`": "`${styles.description1}`"}>
-        <span><div>Tourist prints out  (approved) Covid-19 result.</div></span>
-        <span><div>Tourist must keep this certificate with him,</div></span>
-        <span><div>either electronically via the app or in paper form.</div></span>
-        </div>
-        <div className={`${user.status}` ==="REJECT" ? "`${styles.description}`": "`${styles.description1}`"}>
-        <span><div>User repeat the process.</div></span>
-        <span><div>10$ Processing Charges for</div></span>
-        <span><div>Dr.Link Processing fee applies.</div></span>
+        <div style={{display: user.status ==="APPROVE" ?'block':'none' }}>
+        
+        <span><div className={`${styles.description}`}>Tourist prints out  (approved) Covid-19 result.</div></span>
+        <span><div className={`${styles.description}`}>Tourist must keep this certificate with him,</div></span>
+        <span><div className={`${styles.description}`}>either electronically via the app or in paper form.</div></span>
         </div>
         
-        <div className={`${user.status}` === "REJECT" ? "`${styles.Note1}`": "`${styles.Note}`"}>
-            <span><div>Covid-19 test Certificate Form Fit to Fly Form</div></span>
+        <div style={{display: user.status ==="REJECT" ?'block':'none' }}>
+       
+        <span><div className={`${styles.description}`}>User repeat the process.</div></span>
+        <span><div className={`${styles.description}`}>10$ Processing Charges for</div></span>
+        <span><div className={`${styles.description}`}>Dr.Link Processing fee applies.</div></span>
+        </div>
+        
+        <div tyle={{display: user.status ==="REJECT" ?'block':'none' }}>
+            <span><div className={`${styles.description}`}>Covid-19 test Certificate Form Fit to Fly Form</div></span>
         </div>
 
-        <div className={`${user.status}` === "APPROVE" ? "`${styles.Note}`": "`${styles.Note1}`"}>
+        <div style={{display: user.status ==="APPROVE" ?'block':'none' }}>
             <button className={`${styles.printout}`}>PRINT</button>
         </div>
 
-        <div className={`${user.status}` === "REJECT" ? "ELEVENTH": "TENTH"}>
+        <div style={{display: user.status ==="REJECT" ?'block':'none' }}>
             <button className={`${styles.printout}`}>SUBMIT</button>
         </div>
     </div>
