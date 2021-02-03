@@ -1,13 +1,12 @@
 import React, {Component } from 'react';
 import { Layout } from '../../../components/Layout/Layout';
 import styles from './Menu.module.css';
-import {AllList } from '../AllList/AllList';
-import List from '../List/list';
-import {ListDetails} from '../List/ListDetail';
+
 import axios from 'axios';
 
 
 const token = localStorage.getItem('token');
+
 export default class Menu extends Component {
   state = {};
   componentDidMount() {
@@ -16,7 +15,7 @@ export default class Menu extends Component {
         Authorization: `Bearer ${token}`
       }
     }
-    axios.get('user', config).then(
+    axios.get('http://localhost:8000/user', config).then(
       res=>{
         this.setState({
           user: res.data
@@ -36,19 +35,15 @@ export default class Menu extends Component {
   render() {
     if(this.state.user) {
       return (
-        <Layout user_name={this.state.user.username} user_id={this.state.user.id}>
-          <div>
+        <div>
 
-          </div>
-        </Layout>
+        </div>
       )
     }
   return (
-    <Layout>
-      <div>
-          <List id ="1"/>
-      </div>
-    </Layout>
+    <div>
+      
+    </div>
   )
 }
 }
