@@ -43,6 +43,12 @@
     color: white;
     font-size: 28px;
 }
+
+.section_table {
+    align-items: center;
+    justify-content:center;
+    margin: auto;
+}
 .column_is_center {
     background-color: white;
     width: 150px;
@@ -202,7 +208,7 @@ section_table {
 }
 
 .button_display{
-    width: 150px;
+    width: auto;
     height: 30px;
     border-radius: 90px;
     background-color: white;

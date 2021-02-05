@@ -13,8 +13,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Dateformat } from '../../../dateformat';
 
-function Mophlist ({}) {
-    const Customerlis = [{clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number}]
+function MophManage ({}) {
+    const Customerlis = [{clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '1234566668'}];
     const useStyles = makeStyles({
       table: {
         minWidth: 650,
@@ -84,4 +84,4 @@ function Mophlist ({}) {
   )
 }
 
-export default Mophlist;
+export default MophManage;
