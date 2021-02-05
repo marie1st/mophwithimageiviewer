@@ -5,7 +5,6 @@ import { BrowserRouter as Router, useLocation} from 'react-router-dom';
 import { AdminRoutes} from './containers';
 import { UserRoutes } from './containers';
 import Home from './containers/Admin/Home/home';
-import Background from './containers/Admin/Background/Background';
 
 
 function App() { 
@@ -18,7 +17,7 @@ function App() {
          <div className={window.location.pathname != "/register" ? "display_left": "display"}>
             <img src={logo} alt="logo" />
         </div>
-        <Background />
+        <Home />
        <AdminRoutes />
     </div>  
      </Router>
