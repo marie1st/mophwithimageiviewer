@@ -18,7 +18,7 @@ handleSubmit =e=> {
     password: this.password
   };
 
-  axios.post('http://localhost:8000/login', data)
+  axios.post('http://localhost:8000/api/login', data)
     .then(res=> {
       localStorage.setItem('token', res.data.token);
       this.setState({fireRedirect: true})
@@ -28,7 +28,7 @@ handleSubmit =e=> {
     })
 
   if(this.state.fireRedirect) {
-    return <Redirect to="/admin" />
+    return <Redirect to="/home" />
   }
 
 }

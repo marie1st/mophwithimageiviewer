@@ -6,7 +6,7 @@ import axios from 'axios';
 export default class Register extends React.Component{
 constructor(props) {
   super(props);
-  this.state = {email: '', password: '', username: '', confirm_password: '', terms: false, fireRedirect: false};
+  this.state = {email: '', password: '', name: '', confirm_password: '', terms: false, fireRedirect: false};
   this.handleSubmit = this.handleSubmit.bind(this);
 }
 
@@ -14,15 +14,13 @@ handleSubmit =e=> {
   e.preventDefault();
 
   const data = {
-    username: this.username,
+    name: this.username,
     email: this.email,
     password: this.password,
     confirm_password: this.confirm_password,
-    terms: this.terms,
-    token: '',
   };
 
-  axios.post('http://localhost:8000/register', data)
+  axios.post('http://localhost:8000/api/auth/signup', data)
     .then(res=> {
       this.setState({fireRedirect: true, token: res.data.token});
     })
@@ -30,11 +28,10 @@ handleSubmit =e=> {
       console.log(err)
     })
   if (this.state.fireRedirect) {
-    return <Redirect to ={'/home/'}/>
+    return <Redirect to ={'/home'}/>
   }
 }
 render ( ) {
-  const to = "http://localhost:3001/register";
     return ( 
     <section className={styles.section_container}>
     <form onSubmit={this.handleSubmit} >
