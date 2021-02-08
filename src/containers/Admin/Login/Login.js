@@ -13,12 +13,12 @@ handleSubmit =e=> {
   e.preventDefault();
 
  
-  const data = {
+  const data = JSON.stringify({
     email: this.email,
     password: this.password
-  };
+  });
 
-  axios.post('http://localhost:8000/api/login', data)
+  axios.post('http://localhost:8000/api/login', data, {headers:{"Content-Type" : "application/json"}})
     .then(res=> {
       localStorage.setItem('token', res.data.token);
       this.setState({fireRedirect: true})
