@@ -1,159 +1,150 @@
 import styles from './TestCenter.module.css';
 import React, { useState, useEffect } from 'react';
+import {Link, useHistory} from 'react-router-dom';
 import axios from 'axios';
+import logo from '../../../covid19.jpg';
 import logo1 from '../../../covid19.jpg';
 import logo2 from '../../../fittofly.png';
+import Dateformat from '../../../dateformat';
 
 // Import styles
 import '@react-pdf-viewer/thumbnail/lib/styles/index.css';
 
 
-function Mophindividual ({match}) {
-  const Customerlis = [{given_name: 'Maria', lastname: 'Sherapova', nationality: 'russian', passport_no: '1234444', middlename: 'M.', arrival_date: '01/02/2021', other_name: 'Mirium', departure_date: '02/03/2021', sex: 'Female', flight_no: 'THA123', date_of_birth: '01/03/2000', city: 'Chenoble', country_of_birth: 'Russia', accommodation1: 'Hyatt Erawan', health_evisa_path1: '/files/file1.pdf', health_evisa_path2: '/files/file2.pdf'}];
-  const [Customerls, SetCustomerls] = useState([{
-    accommodation1: "Eternal Hotel",
-    arrival_date: "2021-02-08T15:28:45.000Z",
-    city: "Ausburg",
-    country_of_birth: "Austria",
-    covid_file_path: "../../../pdf-test.pdf",
-    covid_test: true,
-    date_of_birth: "1982-02-14T15:28:45.000Z",
-    departure_date: "2021-02-08T15:28:45.000Z",
-    email: "thyren@test.com",
-    fit_file_path: "../../../pdf-test.pdf",
-    fit_test: true,
-    flight: "THA123",
-    given_name: "Thyren",
-    lastname: "Miles",
-    nationality: "american",
-    other_names: "Sexxus",
-    passport_no: "AA102345",
-    sex: "Male",
-    status: "PENDING APPROVAL",
-    test_date: "2021-02-08T15:28:45.000Z",
-    test_result: "NEGATIVE",
-    user_id: 1}]);
+function Mophindividual({match}) {
+  const history = useHistory();
+  const [Customers, SetCustomer] = useState([{status: 'PENDING'}]);
   const [Errors, SetError] = useState(false);
-  const [Params, SetParams] = useState([]);
+  const [Parameters, SetParams] = useState([]);
+
+  //const UserList = [{clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '123456678', clinic_file_path: '../../../pdf-test.pdf', clinic_photo_path: '../../../clinic.png'}];
 
   function onSubmit() {
-    
-    SetParams({status: 'APPROVE'});
-    axios
-    .put(URL, Params)
-    .then(response => {
-      console.log("response: ", response.data);
-      // do something about response
-    })
-    .catch(err => {
-      console.error(err);
-      SetError(true);
-    });
-  }
-  function onReject() {
-   
-    SetParams({status: 'REJECT'});
-    axios
-    .put(URL, Params)
-    .then(response => {
-      console.log("response: ", response.data);
-      // do something about response
-    })
-    .catch(err => {
-      console.error(err);
-      SetError(true);
-    });
-  }
-  function fetchData() {  
     const URL = `http://localhost:3000/drlink-user-views/${match.params.userId}`;
-    axios.get(URL)
-    .then(response => {
-      console.log("response: ", response.data);
-      SetCustomerls(response.data);
+    SetParams(Parameters => Parameters.filter(item => item.id !== "id"));
+    SetParams({status: 'APPROVE'});
+    console.log(Parameters);
+    axios
+    .put(URL, Parameters)
+    .then(respse => {
+      console.log("response: ", respse.data);
       // do something about response
-      console.log(Customerls);
     })
     .catch(err => {
+      console.error(err);
+      SetError(true);
+    });
+    history.push("/admin/mytestcenter")
+  }
+
+  function onReject () {
+    const URL = `http://localhost:3000/drlink-user-views/${match.params.userId}`;
+    SetParams({id: undefined, status: 'REJECT'});
+    console.log(Parameters);
+    axios
+    .put(URL, Parameters)
+    .then(respt => {
+      console.log("response: ", respt.data);
+      // do something about response
+    })
+    .catch(err => {
+      console.error(err);
+      SetError(true);
+    });
+    history.push("/admin/mytestcenter")
+  }
+
+  async function fetchData() {  
+    const URL = `http://localhost:3000/drlink-user-views/${match.params.userId}`;
+    axios
+    .get(URL)
+    .then(response => {
+      console.log("resp", response.data);
+      SetParams([...Parameters, response.data]);
+    })
+    .catch(err => {
+      console.error(err);
       SetError(true);
     });
       
-  }
+  };
+  
 useEffect(() =>{
     fetchData();
-    console.log(Customerls);
-}, [])
-
-return(
-  <section className={`${styles.section_containerer}`}>
-  
-  <div className={`${styles.columns_is_centered}`}>
-    <label className={`${styles.labelhead}`} ><span>Check List</span></label>
-  </div>
-  <div className={`${styles.card}`}>
-        {Customerlis.map((user, index)=>(
+}, []);
+  return (
+   <>
+   <div className={`${styles.section_containerestest}`}>
+     
+   <label className={`${styles.labelhead}`} ><span>Check List</span></label>
+       
+     <div className={styles.card}>
+        {Parameters.map((user, index)=>(
           <div>
         <table>
            <tr>
              
-             <td width="200">Given Name:</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.given_name}</div></td>
-             <td width="200">Nationality:</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.nationality}</div></td>
+             <td width="150">Given Name:</td>
+             <td width="150"><div className={`${styles.button_display}`}>{user.given_name}</div></td>
+             <td width="150">Nationality:</td>
+             <td width="150"><div className={`${styles.button_display}`}>{user.nationality}</div></td>
             
            </tr>
            <tr>
 
-             <td width="200">Family Name:</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.lastname}</div></td>
-             <td width="200">Passport No.:</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.passport_no}</div></td>
+             <td width="150">Family Name:</td>
+             <td width="150"><div className={`${styles.button_display}`}>{user.lastname}</div></td>
+             <td width="150">Passport Number:</td>
+             <td width="150"><div className={`${styles.button_display}`}>{user.passport_no}</div></td>
            </tr>
            <tr>
-             <td width="200">Middle Name:</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.middlename}</div></td>
-             <td width="200">Arrival Date:</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.arrival_date}</div></td>
+             <td width="150">Middle Name:</td>
+             <td width="150"><div className={`${styles.button_display}`}>{user.middlename}</div></td>
+             <td width="150">Arrival Date:</td>
+             <td width="150"><div className={`${styles.button_display}`}><Dateformat date={user.arrival_date} /></div></td>
            </tr>
            <tr>
-             <td width="200">Other Names:</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.other_name}</div></td>
-             <td width="200">Departure Date:</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.departure_date}</div></td>
+             <td width="150">Other Names:</td>
+             <td width="150"><div className={`${styles.button_display}`}>{user.other_name}</div></td>
+             <td width="150">Departure Date:</td>
+             <td width="150"><div className={`${styles.button_display}`}><Dateformat date={user.departure_date} /></div></td>
            </tr>
            <tr>
-             <td width="200">Sex:</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.sex}</div></td>
-             <td width="200">Flight:</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.flight_no}</div></td>
+             <td width="150">Sex:</td>
+             <td width="150"><div className={`${styles.button_display}`}>{user.sex}</div></td>
+             <td width="150">Flight:</td>
+             <td width="150"><div className={`${styles.button_display}`}>{user.flight}</div></td>
            </tr>
            <tr>
-             <td width="200">Date of Birth:</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.date_of_birth}</div></td>
-             <td width="200">City:</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.city}</div></td>
+             <td width="150">Date of Birth:</td>
+             <td width="150"><div className={`${styles.button_display}`}><Dateformat date={user.date_of_birth} /></div></td>
+             <td width="150">City:</td>
+             <td width="150"><div className={`${styles.button_display}`}>{user.city}</div></td>
            </tr>
            <tr>
-             <td width="200">Country of Birth</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.country_of_birth}</div></td>
-             <td width="200">Hotel</td>
-             <td width="200"><div className={`${styles.button_display}`}>{user.accommodation1}</div></td>
+             <td width="150">Country of Birth</td>
+             <td width="150"><div className={`${styles.button_display}`}>{user.country_of_birth}</div></td>
+             <td width="150">Hotel</td>
+             <td width="150"><div className={`${styles.button_display}`}>{user.accommodation1}</div></td>
            </tr>
+           
          </table>
          <div className={`${styles.section_containerhead}`} >Test Examination Result</div>
-         <a href= {`/path${user.health_evisa_path1}`} >
-         <div className={`${styles.preview}`}> <img className={`${styles.previewThumbnail}`} src={logo1} /> </div>
-        </a>
-          <div className={`${styles.section_footer}`} >Covid-19 Test Certification Form</div>
+         <div className={`${styles.section_center}`}><Link to={`${user.clinic_file_path}`} target="_blank" download>Download</Link></div>
+         
+         <div className={`${styles.previewer}`}> <img className={`${styles.previewThumbnail}`} src={logo1} /> </div>
+    
+          <div className={`${styles.section_foot}`} >Covid-19 Test Certification Form</div>
 
-        
-         <a href= {`/path${user.health_evisa_path2}`} >
-         <div className={`${styles.preview}`}> <img className={`${styles.previewThumbnail}`} src={logo2} /> </div> 
-         </a>
-         <div className={`${styles.section_footer}`} >Fit-to-Fly Form</div>
+          <div className={`${styles.section_center}`}><Link to={`${user.clinic_file_path}`} target="_blank" download>Download</Link></div>
+         
+         <div className={`${styles.previewer}`}> <img className={`${styles.previewThumbnail}`} src={logo2} /> </div>
+    
+          <div className={`${styles.section_foot}`} >Fit-to-Fly Form</div>
          </div>
         
          ))} 
-         
+
          
          
      </div>
@@ -161,8 +152,8 @@ return(
      <button className={`${styles.button}`} onClick={onSubmit} >APPROVE</button>
      <button className={`${styles.button}`} onClick={onReject}>REJECT</button>
     </div>
-</section>
-)
+   </div>
+   </>
+  );
 }
-
 export default Mophindividual;

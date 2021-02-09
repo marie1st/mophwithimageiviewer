@@ -7,6 +7,7 @@ import logo from '../../../clinic.png';
 
 // Import styles
 import '@react-pdf-viewer/thumbnail/lib/styles/index.css';
+import { ContactSupportOutlined } from '@material-ui/icons';
 
 
 function MophTestind ({match}) {
@@ -17,9 +18,11 @@ function MophTestind ({match}) {
 
   //const UserList = [{clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '123456678', clinic_file_path: '../../../pdf-test.pdf', clinic_photo_path: '../../../clinic.png'}];
 
-  function onSubmit(e) {
+  function onSubmit() {
     const URL = `http://localhost:3000/test-centers/${match.params.testId}`;
+    SetParams(Parameters => Parameters.filter(item => item.id !== "id"));
     SetParams({status: 'APPROVE'});
+    console.log(Parameters);
     axios
     .put(URL, Parameters)
     .then(respse => {
@@ -33,9 +36,10 @@ function MophTestind ({match}) {
     history.push("/admin/mytestcenter")
   }
 
-  function onReject (e) {
+  function onReject () {
     const URL = `http://localhost:3000/test-centers/${match.params.testId}`;
-    SetParams({status: 'REJECT'});
+    SetParams({id: undefined, status: 'REJECT'});
+    console.log(Parameters);
     axios
     .put(URL, Parameters)
     .then(respt => {
