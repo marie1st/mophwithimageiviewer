@@ -6,16 +6,19 @@ import logo from '../../../covid19.jpg';
 import logo1 from '../../../covid19.jpg';
 import logo2 from '../../../fittofly.png';
 import Dateformat from '../../../dateformat';
+import Home from '../../Admin/Home/home';
 
 // Import styles
 import '@react-pdf-viewer/thumbnail/lib/styles/index.css';
 
 
 function Mophindividual({match}) {
+
+  const token = localStorage.getItem('token');
   const history = useHistory();
-  const [Customers, SetCustomer] = useState([{status: 'PENDING'}]);
   const [Errors, SetError] = useState(false);
   const [Parameters, SetParams] = useState([]);
+  const [HasUser, SetHasUser] = useState(false);
 
   //const UserList = [{clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '123456678', clinic_file_path: '../../../pdf-test.pdf', clinic_photo_path: '../../../clinic.png'}];
 
@@ -66,10 +69,33 @@ function Mophindividual({match}) {
     });
       
   };
+
+  async function fetchUser() {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    axios.get('http://localhost:8000/api/auth/user', config).then(
+      res=>{
+        SetHasUser(true);
+      }
+      )
+      .catch(
+      err => {
+        console.log(err);
+        SetError(true);
+      }
+      );
+  }
+
+
   
 useEffect(() =>{
     fetchData();
+    fetchUser();
 }, []);
+if (Errors) { return <Home /> }
   return (
    <>
    <div className={`${styles.section_containerestest}`}>

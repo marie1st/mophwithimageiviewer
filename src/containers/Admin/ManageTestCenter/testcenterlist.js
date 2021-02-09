@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../../../clinic.png';
+import Home from '../../Admin/Home/home';
 
 
 // Import styles
@@ -11,10 +12,12 @@ import { ContactSupportOutlined } from '@material-ui/icons';
 
 
 function MophTestind ({match}) {
+
+  const token = localStorage.getItem('token');
   const history = useHistory();
-  const [Customers, SetCustomer] = useState([{status: 'PENDING'}]);
   const [Errors, SetError] = useState(false);
   const [Parameters, SetParams] = useState([]);
+  const [HasUser, SetHasUser] = useState(false);
 
   //const UserList = [{clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '123456678', clinic_file_path: '../../../pdf-test.pdf', clinic_photo_path: '../../../clinic.png'}];
 
@@ -67,10 +70,35 @@ function MophTestind ({match}) {
     });
       
   };
-  
+
+
+  async function fetchUser() {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    axios.get('http://localhost:8000/api/auth/user', config).then(
+      res=>{
+        SetHasUser(true);
+      }
+      )
+      .catch(
+      err => {
+        console.log(err);
+        SetError(true);
+      }
+      );
+  }
+
+
 useEffect(() =>{
     fetchData();
+    fetchUser();
 }, []);
+
+
+if (Errors) { return <Home /> }
   return (
    <>
    <div className={`${styles.section_containerestest}`}>

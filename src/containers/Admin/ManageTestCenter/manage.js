@@ -2,12 +2,14 @@ import React, {Component, useState, useEffect} from 'react';
 import styles from './manage.module.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Home from '../../Admin/Home/home';
 
 function MophManage ({}) {
     //const Customerlis = [{id: '1', clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '1234566668'}];
-
+    const token = localStorage.getItem('token');
     const [Customerls, SetCustomerls] = useState([]);
     const [Errors, SetError] = useState(false);
+    const [HasUser, SetHasUser] = useState(false);
     function fetchData() {  
       const URL = 'http://localhost:3000/test-centers';
       axios.get("http://localhost:3000/test-centers")
@@ -21,10 +23,33 @@ function MophManage ({}) {
       });
         
     }
+
+
+  async function fetchUser() {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    axios.get('http://localhost:8000/api/auth/user', config).then(
+      res=>{
+        SetHasUser(true);
+      }
+      )
+      .catch(
+      err => {
+        console.log(err);
+        SetError(true);
+      }
+      );
+  }
+
   useEffect(() =>{
       fetchData();
+      fetchUser();
   }, [])
 
+  if (Errors) { return <Home /> }
   return(
     <section className={`${styles.section_containerer}`}>
     
