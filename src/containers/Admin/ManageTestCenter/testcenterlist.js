@@ -1,6 +1,6 @@
 import styles from './manage.module.css';
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../../../clinic.png';
 
@@ -10,15 +10,15 @@ import '@react-pdf-viewer/thumbnail/lib/styles/index.css';
 
 
 function MophTestind ({match}) {
-  
+  const history = useHistory();
   const [Customers, SetCustomer] = useState([{status: 'PENDING'}]);
   const [Errors, SetError] = useState(false);
   const [Parameters, SetParams] = useState([]);
 
   //const UserList = [{clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '123456678', clinic_file_path: '../../../pdf-test.pdf', clinic_photo_path: '../../../clinic.png'}];
 
-  function onSubmit() {
-    
+  function onSubmit(e) {
+    const URL = `http://localhost:3000/test-centers/${match.params.testId}`;
     SetParams({status: 'APPROVE'});
     axios
     .put(URL, Parameters)
@@ -30,21 +30,23 @@ function MophTestind ({match}) {
       console.error(err);
       SetError(true);
     });
+    history.push("/admin/mytestcenter")
   }
 
-  function onReject () {
-   
+  function onReject (e) {
+    const URL = `http://localhost:3000/test-centers/${match.params.testId}`;
     SetParams({status: 'REJECT'});
     axios
-    .pup(URL, Parameters)
+    .put(URL, Parameters)
     .then(respt => {
       console.log("response: ", respt.data);
       // do something about response
     })
     .catch(err => {
-      console.trror(err);
+      console.error(err);
       SetError(true);
     });
+    history.push("/admin/mytestcenter")
   }
 
   async function fetchData() {  
