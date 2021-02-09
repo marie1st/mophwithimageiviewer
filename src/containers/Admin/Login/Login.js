@@ -18,21 +18,24 @@ handleSubmit =e=> {
     password: this.password
   });
 
-  axios.post('http://localhost:8000/api/login', data, {headers:{"Content-Type" : "application/json"}})
+  axios.post('http://localhost:8000/api/auth/login', data, {headers:{"Content-Type" : "application/json"}})
     .then(res=> {
-      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('token', res.data.access_token);
       this.setState({fireRedirect: true})
+      console.log(res.data);
+      console.log(res.data.access_token);
+      console.log(this.state.fireRedirect);
     })
     .catch(err =>{
       console.log(err)
-    })
+    });
 
-  if(this.state.fireRedirect) {
-    return <Redirect to="/home" />
-  }
 
 }
 render ( ) {
+    if(this.state.fireRedirect) {
+      return <Redirect to="/home" />
+    }
     return ( 
     <section className={styles.section_container}>
     <form onSubmit={this.handleSubmit} >

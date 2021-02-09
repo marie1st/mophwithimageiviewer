@@ -139,8 +139,11 @@ input[type="radio"] {
     vertical-align: middle;
 }
 
-section_table {
+.section_table {
     border: 1px black;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
 }
 
 .card {
@@ -241,4 +244,28 @@ ELEVENTH {
     width: 300px;
     height: 50px;
     border-radius: 50px;
+}
+
+.table_is_centered {
+    justify-content: center;
+    text-align: center;
+}
+
+.section_footer {
+    color: white;
+    font-size: 13px;
+    text-align: center;
+    justify-content: center;
+}
+
+.previewThumbnail {
+    width: 300px;
+    height: 300px;
+    border-radius: 50px;
+    padding-left: 0;
+}
+
+.preview {
+   
+    padding-left: 300px;
 }

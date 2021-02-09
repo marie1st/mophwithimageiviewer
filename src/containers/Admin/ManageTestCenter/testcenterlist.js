@@ -2,7 +2,7 @@ import styles from './manage.module.css';
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import FilePreviewerThumbnail from 'react-file-previewer';
+import logo from '../../../clinic.png';
 
 
 // Import styles
@@ -10,18 +10,20 @@ import '@react-pdf-viewer/thumbnail/lib/styles/index.css';
 
 
 function MophTestind ({match}) {
-  const params = [{example: true}];
-  const [Customers, SetCustomer] = useState([]);
+  
+  const [Customers, SetCustomer] = useState([{status: 'PENDING'}]);
   const [Errors, SetError] = useState(false);
+  const [Parameters, SetParams] = useState([]);
 
-  const UserList = [{clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '123456678', clinic_file_path: '../../../pdf-test.pdf'}];
+  //const UserList = [{clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '123456678', clinic_file_path: '../../../pdf-test.pdf', clinic_photo_path: '../../../clinic.png'}];
 
   function onSubmit() {
-    const URL = `http://localhost:3000/users/${match.params.listId}`;
+    
+    SetParams({status: 'APPROVE'});
     axios
-    .post(URL, params)
-    .then(response => {
-      console.log("response: ", response.data);
+    .put(URL, Parameters)
+    .then(respse => {
+      console.log("response: ", respse.data);
       // do something about response
     })
     .catch(err => {
@@ -29,26 +31,40 @@ function MophTestind ({match}) {
       SetError(true);
     });
   }
+
+  function onReject () {
+   
+    SetParams({status: 'REJECT'});
+    axios
+    .pup(URL, Parameters)
+    .then(respt => {
+      console.log("response: ", respt.data);
+      // do something about response
+    })
+    .catch(err => {
+      console.trror(err);
+      SetError(true);
+    });
+  }
+
   async function fetchData() {  
-    const URL = `http://localhost:3000/users/${match.params.listId}`;
+    const URL = `http://localhost:3000/test-centers/${match.params.testId}`;
     axios
     .get(URL)
     .then(response => {
-      console.log("response: ", response.data);
-      SetCustomer(response.data);
-      // do something about response
+      console.log("resp", response.data);
+      SetParams([...Parameters, response.data]);
     })
     .catch(err => {
       console.error(err);
       SetError(true);
     });
       
-  }
+  };
+  
 useEffect(() =>{
     fetchData();
-    console.log(match);
-    console.log(match.url);
-}, [])
+}, []);
   return (
    <>
    <div className={`${styles.section_containerestest}`}>
@@ -56,7 +72,7 @@ useEffect(() =>{
    <label className={`${styles.labelhead}`} ><span>Check List</span></label>
        
      <div className={styles.card}>
-        {UserList.map((user, index)=>(
+        {Parameters.map((user, index)=>(
           <div>
         <table>
            <tr>
@@ -70,7 +86,7 @@ useEffect(() =>{
            <tr>
 
              <td width="100">Country</td>
-             <td width="150"><div className={`${styles.button_display}`}>{user.country}</div></td>
+             <td width="150"><div className={`${styles.button_display}`}>{user.clinic_country}</div></td>
              <td width="100">Clinic Registration Number:</td>
              <td width="150"><div className={`${styles.button_display}`}>{user.clinic_registration_number}</div></td>
            </tr>
@@ -82,9 +98,10 @@ useEffect(() =>{
            </tr>
            
          </table>
-         <div className={`${styles.section_containhead}`} >Clinic Document:</div>
-         <Link to={`${user.clinic_file_path}`} target="_blank" download>Download</Link>
-          <FilePreviewerThumbnail file={{url: `${user.clinic_file_path}`}}/> 
+         <div className={`${styles.section_containerhead}`} >Clinic Document:</div>
+         <div className={`${styles.section_center}`}><Link to={`${user.clinic_file_path}`} target="_blank" download>Download</Link></div>
+         
+         <div className={`${styles.preview}`}> <img className={`${styles.previewThumbnail}`} src={logo} /> </div>
     
           <div className={`${styles.section_foot}`} >Clinic Registration File</div>
 
@@ -97,8 +114,8 @@ useEffect(() =>{
          
      </div>
     <div>
-     <button className={`${styles.button}`} >APPROVE</button>
-     <button className={`${styles.button}`} >REJECT</button>
+     <button className={`${styles.button}`} onClick={onSubmit} >APPROVE</button>
+     <button className={`${styles.button}`} onClick={onReject}>REJECT</button>
     </div>
    </div>
    </>

@@ -3,7 +3,7 @@ const axios = require('axios');
 
 function getapi() {
 axios
-    .get("http://localhost:3000/users/1")
+    .get("http://localhost:3000/test-centers")
     .then(response => {
       console.log("response: ", response.data);
       console.log("data:", response.data);

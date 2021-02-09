@@ -8,14 +8,16 @@ import MophTestind from './ManageTestCenter/testcenterlist';
 import Register from './Register/Register';
 
 
+
 export const AdminRoutes = () =>{
   return (
   <>
    <Switch>
      <Route exact path="/admin" component={Menu}/>
-     <Route exact path="/admin/moph/users/:userId" component={Mophlistind} />
-     <Route exact path="/admin/manage" component={MophManage } />
+     <Route exact path="/admin/lists/:userId" component={Mophlistind} />
+     <Route exact path="/admin/mytestcenter" component={MophManage } />
      <Route exact path="/admin/moph/tests/:testId" component={MophTestind } />
+     <Route exact path="/admin/views" component={Mophlist} />
      <Route exact path="/login" component={Login} />
      <Route exact path="/register" component={Register} />
    </Switch>

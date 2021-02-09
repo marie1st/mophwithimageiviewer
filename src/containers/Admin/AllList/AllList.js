@@ -133,3 +133,5 @@ const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsP
 
   )
 }
+
+export default AllList;
