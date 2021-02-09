@@ -21,11 +21,10 @@ function Mophindividual({match}) {
 
   function onSubmit() {
     const URL = `http://localhost:3000/drlink-user-views/${match.params.userId}`;
-    SetParams(Parameters => Parameters.filter(item => item.id !== "id"));
-    SetParams({status: 'APPROVE'});
-    console.log(Parameters);
+    SetParams(Parameters.map(item => {delete item.user_id; item.status = "APPROVE"; return item; }));
+    console.log("param",Parameters);
     axios
-    .put(URL, Parameters)
+    .put(URL, Parameters[0])
     .then(respse => {
       console.log("response: ", respse.data);
       // do something about response
@@ -39,10 +38,9 @@ function Mophindividual({match}) {
 
   function onReject () {
     const URL = `http://localhost:3000/drlink-user-views/${match.params.userId}`;
-    SetParams({id: undefined, status: 'REJECT'});
-    console.log(Parameters);
+    SetParams(Parameters.map(item => {delete item.user_id; item.status = "REJECT"; return item; }));
     axios
-    .put(URL, Parameters)
+    .put(URL, Parameters[0])
     .then(respt => {
       console.log("response: ", respt.data);
       // do something about response
@@ -134,13 +132,13 @@ useEffect(() =>{
          
          <div className={`${styles.previewer}`}> <img className={`${styles.previewThumbnail}`} src={logo1} /> </div>
     
-          <div className={`${styles.section_foot}`} >Covid-19 Test Certification Form</div>
+          <div className={`${styles.section_footer}`} >Covid-19 Test Certification Form</div>
 
           <div className={`${styles.section_center}`}><Link to={`${user.clinic_file_path}`} target="_blank" download>Download</Link></div>
          
          <div className={`${styles.previewer}`}> <img className={`${styles.previewThumbnail}`} src={logo2} /> </div>
     
-          <div className={`${styles.section_foot}`} >Fit-to-Fly Form</div>
+          <div className={`${styles.section_footer}`} >Fit-to-Fly Form</div>
          </div>
         
          ))} 

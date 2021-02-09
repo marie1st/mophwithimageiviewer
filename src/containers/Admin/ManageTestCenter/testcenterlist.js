@@ -20,11 +20,12 @@ function MophTestind ({match}) {
 
   function onSubmit() {
     const URL = `http://localhost:3000/test-centers/${match.params.testId}`;
-    SetParams(Parameters => Parameters.filter(item => item.id !== "id"));
-    SetParams({status: 'APPROVE'});
-    console.log(Parameters);
+    console.log("param",Parameters);
+    SetParams(Parameters.map(item => {delete item.id; item.status = "APPROVE"; return item; }));
+    console.log("param2", Parameters);
+    console.log("param3", Parameters[0]);
     axios
-    .put(URL, Parameters)
+    .put(URL, Parameters[0])
     .then(respse => {
       console.log("response: ", respse.data);
       // do something about response
@@ -38,10 +39,9 @@ function MophTestind ({match}) {
 
   function onReject () {
     const URL = `http://localhost:3000/test-centers/${match.params.testId}`;
-    SetParams({id: undefined, status: 'REJECT'});
-    console.log(Parameters);
+    SetParams(Parameters.map(item => {delete item.id; item.status = "REJECT"; return item; }));
     axios
-    .put(URL, Parameters)
+    .put(URL, Parameters[0])
     .then(respt => {
       console.log("response: ", respt.data);
       // do something about response
@@ -119,10 +119,13 @@ useEffect(() =>{
          
          
      </div>
+
+     
     <div>
      <button className={`${styles.button}`} onClick={onSubmit} >APPROVE</button>
      <button className={`${styles.button}`} onClick={onReject}>REJECT</button>
     </div>
+    
    </div>
    </>
   );
