@@ -1,9 +1,10 @@
 import styles from './manage.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../../../clinic.png';
 import Home from '../../Admin/Home/home';
+import ImageViewer from 'react-simple-image-viewer';
 
 
 // Import styles
@@ -18,8 +19,20 @@ function MophTestind ({match}) {
   const [Errors, SetError] = useState(false);
   const [Parameters, SetParams] = useState([]);
   const [HasUser, SetHasUser] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const images = [
+    'https://www.psrehabclinic.com/wp-content/uploads/2019/11/73375452_137945664209862_6499348467419185152_o.jpg'
+  ];
+  const openImageViewer = useCallback((index) => {
+    setCurrentImage(index);
+    setIsViewerOpen(true);
+  }, []);
 
-  //const UserList = [{clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '123456678', clinic_file_path: '../../../pdf-test.pdf', clinic_photo_path: '../../../clinic.png'}];
+  const closeImageViewer = () => {
+    setCurrentImage(0);
+    setIsViewerOpen(false);
+  };
 
   function onSubmit() {
     const URL = `http://localhost:3000/test-centers/${match.params.testId}`;
@@ -136,6 +149,25 @@ if (Errors) { return <Home /> }
          <div className={`${styles.section_center}`}><Link to={`${user.clinic_file_path}`} target="_blank" download>Download</Link></div>
          
          <div className={`${styles.preview}`}> <img className={`${styles.previewThumbnail}`} src={logo} /> </div>
+         <div className={`${styles.preview}`}><div className={`${styles.previewThumbnail}`}>
+         
+        <img
+          src={`${user.clinic_file_path}`}
+          onClick={ () => openImageViewer(index) }
+          width="300"
+          key={ index }
+          style={{ margin: '2px' }}
+          alt=""/>
+    
+
+      {isViewerOpen && (
+        <ImageViewer
+          src={ images }
+          currentIndex={ currentImage }
+          onClose={ closeImageViewer }
+        />
+      )}
+           </div></div>
     
           <div className={`${styles.section_foot}`} >Clinic Registration File</div>
 

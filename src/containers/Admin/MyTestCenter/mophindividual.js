@@ -1,5 +1,5 @@
 import styles from './TestCenter.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import axios from 'axios';
 import logo from '../../../covid19.jpg';
@@ -7,6 +7,7 @@ import logo1 from '../../../covid19.jpg';
 import logo2 from '../../../fittofly.png';
 import Dateformat from '../../../dateformat';
 import Home from '../../Admin/Home/home';
+import ImageViewer from 'react-simple-image-viewer';
 
 // Import styles
 import '@react-pdf-viewer/thumbnail/lib/styles/index.css';
@@ -19,6 +20,20 @@ function Mophindividual({match}) {
   const [Errors, SetError] = useState(false);
   const [Parameters, SetParams] = useState([]);
   const [HasUser, SetHasUser] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+ 
+
+  const openImageViewer = useCallback((index) => {
+    setCurrentImage(index);
+    setIsViewerOpen(true);
+  }, []);
+
+  const closeImageViewer = () => {
+    setCurrentImage(0);
+    setIsViewerOpen(false);
+  };
+
 
   //const UserList = [{clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '123456678', clinic_file_path: '../../../pdf-test.pdf', clinic_photo_path: '../../../clinic.png'}];
 
@@ -154,16 +169,52 @@ if (Errors) { return <Home /> }
            
          </table>
          <div className={`${styles.section_containerhead}`} >Test Examination Result</div>
-         <div className={`${styles.section_center}`}><Link to={`${user.clinic_file_path}`} target="_blank" download>Download</Link></div>
+         <div className={`${styles.section_center}`}><Link to={`${user.covid_file_path}`} target="_blank" download>Download</Link></div>
          
          <div className={`${styles.previewer}`}> <img className={`${styles.previewThumbnail}`} src={logo1} /> </div>
-    
+         <div classNmae={`${styles.previewjs}`}><div className={`${styles.previewThumbnail}`}>
+         
+        <img
+          src={`${user.covid_photo_file_path}`}
+          onClick={ () => openImageViewer(index) }
+          width="300"
+          key={ index }
+          style={{ margin: '200px' }}
+          alt=""/>
+  
+
+      {isViewerOpen && (
+        <ImageViewer
+          src={`${user.covid_photo_file_path}`}
+          currentIndex={ currentImage }
+          onClose={ closeImageViewer }
+        />
+      )}
+           </div></div>
           <div className={`${styles.section_footer}`} >Covid-19 Test Certification Form</div>
 
-          <div className={`${styles.section_center}`}><Link to={`${user.clinic_file_path}`} target="_blank" download>Download</Link></div>
+          <div className={`${styles.section_center}`}><Link to={`${user.fit_file_path}`} target="_blank" download>Download</Link></div>
          
          <div className={`${styles.previewer}`}> <img className={`${styles.previewThumbnail}`} src={logo2} /> </div>
-    
+         <div classNmae={`${styles.previewjs}`}><div className={`${styles.previewThumbnail}`}>
+         
+         <img
+           src={`${user.fit_photo_file_path}`}
+           onClick={ () => openImageViewer(index) }
+           width="300"
+           key={ index }
+           style={{ margin: '200px' }}
+           alt=""/>
+   
+ 
+       {isViewerOpen && (
+         <ImageViewer
+           src={`${user.fit_photo_file_path}`}
+           currentIndex={ currentImage }
+           onClose={ closeImageViewer }
+         />
+       )}
+            </div></div>
           <div className={`${styles.section_footer}`} >Fit-to-Fly Form</div>
          </div>
         
