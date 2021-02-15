@@ -6,3 +6,4 @@ export {Button} from './Button/Button';
 export {Textbox} from './Textbox/Textbox';
 export {Table} from './Table/Table';
 export {Dropdown} from './Dropdown/dropdown';
+export {Checkbox} from './Checkbox/checkbox';

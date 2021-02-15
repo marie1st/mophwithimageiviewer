@@ -243,6 +243,12 @@ input[type="radio"] {
     font-size: 13px;
 }
 
+.section_tick {
+    color: white;
+    font-size: 15px;
+    margin: auto;
+}
+
 TENTH {
     display:none;
 }
@@ -294,4 +300,13 @@ ELEVENTH {
 
 .previewjs {
     padding-left: 300px;
+}
+
+.checkbox {
+    width: 30px;
+    height: 30px;
+}
+
+.section_checkbox {
+    padding-left: 200px;
 }

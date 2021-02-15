@@ -8,6 +8,7 @@ import logo2 from '../../../fittofly.png';
 import Dateformat from '../../../dateformat';
 import Home from '../../Admin/Home/home';
 import ImageViewer from 'react-simple-image-viewer';
+import Checkbox from '../../../components/Checkbox/checkbox';
 
 // Import styles
 import '@react-pdf-viewer/thumbnail/lib/styles/index.css';
@@ -22,6 +23,12 @@ function Mophindividual({match}) {
   const [HasUser, SetHasUser] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const [CovidApprove, SetCovidApprove] = useState({checked: false});
+  const [CovidReject, SetCovidReject] = useState({checked: false});
+  const [Covid, SetCovidtest] = useState({covid: 'PENDING APPROVAL'});
+  const [FitApprove, SetFitApprove] = useState({checked: false});
+  const [FitReject, SetFitReject] = useState({checked: false});
+  const [FitFly, SetFitFlytest] = useState({fit: 'PENDING APPROVAL'});
  
 
   const openImageViewer = useCallback((index) => {
@@ -39,7 +46,7 @@ function Mophindividual({match}) {
 
   function onSubmit() {
     const URL = `http://localhost:3000/drlink-user-views/${match.params.userId}`;
-    SetParams(Parameters.map(item => {delete item.user_id; item.status = "APPROVE"; return item; }));
+    SetParams(Parameters.map(item => {delete item.user_id; item.status = "APPROVE"; item.status_covid = "APPROVE"; item.status_fit = "APPROVE"; return item; }));
     console.log("param",Parameters);
     axios
     .put(URL, Parameters[0])
@@ -56,7 +63,7 @@ function Mophindividual({match}) {
 
   function onReject () {
     const URL = `http://localhost:3000/drlink-user-views/${match.params.userId}`;
-    SetParams(Parameters.map(item => {delete item.user_id; item.status = "REJECT"; return item; }));
+    SetParams(Parameters.map(item => {delete item.user_id; item.status = "REJECT"; item.status_covid = `${CovidApprove.checked}`; item.status_fit = `${FitApprove.checked}`; return item; }));
     axios
     .put(URL, Parameters[0])
     .then(respt => {
@@ -179,7 +186,7 @@ if (Errors) { return <Home /> }
           onClick={ () => openImageViewer(index) }
           width="300"
           key={ index }
-          style={{ margin: '200px' }}
+          style={{ margin: '150px' }}
           alt=""/>
   
 
@@ -192,7 +199,10 @@ if (Errors) { return <Home /> }
       )}
            </div></div>
           <div className={`${styles.section_footer}`} >Covid-19 Test Certification Form</div>
-
+          <div className={`${styles.section_checkbox}`}>
+           <input className={`${styles.checkbox}`} type="checkbox" checked={CovidApprove.checked} onChange={e=>{SetCovidApprove({...CovidApprove, checked: e.target.checked})}}></input><label>APPROVE</label>
+           <input className={`${styles.checkbox}`} type="checkbox" checked={CovidReject.checked} onChange={e=>{SetCovidReject({...CovidReject, checked: e.target.checked})}}></input><label>REJECT</label>
+          </div> 
           <div className={`${styles.section_center}`}><Link to={`${user.fit_file_path}`} target="_blank" download>Download</Link></div>
          
          <div className={`${styles.previewer}`}> <img className={`${styles.previewThumbnail}`} src={logo2} /> </div>
@@ -203,7 +213,7 @@ if (Errors) { return <Home /> }
            onClick={ () => openImageViewer(index) }
            width="300"
            key={ index }
-           style={{ margin: '200px' }}
+           style={{ margin: '150px' }}
            alt=""/>
    
  
@@ -216,8 +226,12 @@ if (Errors) { return <Home /> }
        )}
             </div></div>
           <div className={`${styles.section_footer}`} >Fit-to-Fly Form</div>
+          <div className={`${styles.section_checkbox}`}>
+           <input className={`${styles.checkbox}`} type="checkbox" checked={FitApprove.checked} onChange={e=>{SetFitApprove({...FitApprove, checked: e.target.checked})}}></input><label>APPROVE</label>
+           <input className={`${styles.checkbox}`} type="checkbox" checked={FitReject.checked} onChange={e=>{SetFitReject({...FitApprove, checked: e.target.checked})}}></input><label>REJECT</label>
+          </div> 
          </div>
-        
+  
          ))} 
 
          
