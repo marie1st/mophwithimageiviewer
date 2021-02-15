@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
  */
 export const Button = ({
   children,
-  color = 'lightblue',
+  color = 'bAPPROVE',
   size = 'md',
   ...rest
 }) => {

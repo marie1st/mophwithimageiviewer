@@ -5,6 +5,7 @@ import axios from 'axios';
 import {Dateformat } from '../../../dateformat';
 import Home from '../../Admin/Home/home';
 import { ModeComment } from '@material-ui/icons';
+import {Button} from '../../../components/Button/Button';
 
 function MophlistApprove ({}) {
   //const Customerlis = [{id: '1', clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '1234566668'}];
@@ -82,7 +83,7 @@ return(
           <td>{row.nationality}</td>
           <td><Link to ={`lists/${row.user_id}`}>{row.passport_no}</Link></td>
           <td><Dateformat date ={row.test_date} /></td>
-          <td>{row.status}</td>
+          <td><td width="200"><Button color={"b"+`${row.status}`}>STATUS</Button><Button color={"b"+`${row.status}`}>COVID-19</Button><Button color={"b"+`${row.status}`}>FIT-TO-FLY</Button></td></td>
        </tr> 
         ))}
     </table>

@@ -49,17 +49,17 @@ export default class Home extends Component {
                     <div className="dropdown">
                     <button className={`${styles.buttonclear}`} onClick={this.gettoggle}>Manage Test Center</button>
                     <div id="myDropdown" className="dropdown_content">
-                      <p><Link to='admin/mytestcenter' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 12}}><button className="buttonclear" >List All Test Centers</button></Link></p>
-                      <p><Link to='admin/listapprove' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 12}}><button className="buttonclear" >List APPROVED Test Centers</button></Link></p>
-                      <p><Link to='admin/listreject' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 12}}><button className="buttonclear" >List REJECTED Test Centers</button></Link></p>
+                      <p><Link to='mytestcenter' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 12}}><button className="buttonclear" >List All Test Centers</button></Link></p>
+                      <p><Link to='listapprove' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 12}}><button className="buttonclear" >List APPROVED Test Centers</button></Link></p>
+                      <p><Link to='listreject' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 12}}><button className="buttonclear" >List REJECTED Test Centers</button></Link></p>
                     </div>
                     </div>
                     <div className="dropdown">
                     <button className={`${styles.buttonclear}`}  onClick={this.dotoggle}>Views</button>
                     <div id="userDropdown" className="dropdown_content">
-                      <p><Link to='admin/views' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 12}}><button className="buttonclear" >List All Traveller Documemts</button></Link></p>
-                      <p><Link to='admin/testlistapprove' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 12}}><button className="buttonclear" >List APPROVED Test Centers</button></Link></p>
-                      <p><Link to='admin/testlistreject' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 12}}><button className="buttonclear" >List REJECTED Test Centers</button></Link></p>
+                      <p><Link to='views' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 12}}><button className="buttonclear" >List All Traveller Documemts</button></Link></p>
+                      <p><Link to='testlistapprove' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 12}}><button className="buttonclear" >List APPROVED Test Centers</button></Link></p>
+                      <p><Link to='testlistreject' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 12}}><button className="buttonclear" >List REJECTED Test Centers</button></Link></p>
                     </div>
                     </div>
                     <Link to='/admin/search' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 33}}><button className={`${styles.buttonclear}`}>Search</button></Link>

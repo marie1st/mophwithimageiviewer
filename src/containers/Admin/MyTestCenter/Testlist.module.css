@@ -1,0 +1,18 @@
+.button {
+    background-color: white;
+    border-color: sandybrown;
+    color: sandybrown;
+    width: 100px;
+    height: 20px;
+}
+
+.APPROVE {
+    background-color: white;
+    border-color: rgba(8, 181, 204, 0.726);
+    color:rgba(8, 181, 204, 0.726);
+}
+.REJECT {
+    background-color: white;
+    border-color: red;
+    color: red;
+}

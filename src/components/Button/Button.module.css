@@ -1,26 +1,44 @@
 .wrapper {
     border-radius: 10px;
-    border: none;
+    border: solid;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  .lightblue {
-    background: #2899E0;
+  .bAPPROVE {
+    background-color: white;
+    border-color: #2899E0;
+    color: #2899E0;
   }
   
-  .red {
-    background: #F25D5D;
+  .bREJECT{
+    background: white;
+    border-color: #F25D5D;
+    color: #F25D5D;
+  }
+
+  .btrue {
+    background-color: white;
+    border-color: #2899E0;
+    color: #2899E0;
+  }
+  
+  .bfalse{
+    background: white;
+    border-color: #F25D5D;
+    color: #F25D5D;
   }
   
   .teal {
     background: #31A5A4;
   }
   
-  .yellow {
-    background: #EA9517;
+  .bPENDING {
+    background:white;
+    border-color: #EA9517;
+    color: #EA9517;
   }
   
   .green {
@@ -53,6 +71,13 @@
     width: 140px;
     height: 40px;
     font-size: 16px;
+    font-weight: 500;
+  }
+
+  .mx {
+    width: 100px;
+    height: 20px;
+    font-size: 12px;
     font-weight: 500;
   }
   
