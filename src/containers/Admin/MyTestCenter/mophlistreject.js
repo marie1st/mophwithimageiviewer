@@ -59,7 +59,7 @@ return(
   <section className={`${styles.section_containerer}`}>
   
   <div className={`${styles.columns_is_centered}`}>
-    <label className={`${styles.labelhead}`} ><span>Test Center List</span></label>
+    <label className={`${styles.labelhead}`} ><span>Traveller List</span></label>
     <table className={`${styles.section_table}`}>
 
     <tr>
@@ -72,7 +72,7 @@ return(
             <td>Status</td>
       </tr>    
      
-        {Customerls.filter(Customer=>Customer.status > 'REJECT').map((row, index) => (
+        {Customerls.filter(Customer=>Customer.status === 'REJECT').map((row, index) => (
           <tr>
           <td>
               {row.given_name}
