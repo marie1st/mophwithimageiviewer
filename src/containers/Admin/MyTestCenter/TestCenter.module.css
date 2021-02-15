@@ -9,6 +9,10 @@
     margin: auto;
 }
 
+.section_search {
+    position: relative;
+    right: 0;
+}
 .section_containerer {
     display:flexbox;
     background-image: url('../../../white.png');
@@ -69,6 +73,20 @@ input {
   display: inline-block;
 }
 
+
+.button_search {
+    background-color:rgba(6, 78, 173, 0.514); 
+    border-radius: 80px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+  }
 #outer
 {
     width:100%;

@@ -63,7 +63,7 @@ export default class Home extends Component {
                       <p><Link to='#' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 12}}><button className="buttonclear" >List REJECTED Test Centers</button></Link></p>
                     </div>
                     </div>
-                    <Link to='#' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 33}}><button className={`${styles.buttonclear}`}>Search</button></Link>
+                    <Link to='/admin/search' style={{textDecoration: 'none', color: 'white', fontFamily: 'sans-serif', fontSize: 33}}><button className={`${styles.buttonclear}`}>Search</button></Link>
                 </div>
             )
         }

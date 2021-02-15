@@ -11,6 +11,13 @@ function ListSearch() {
     const [Customerls, SetCustomerls] = useState([]);
     const [Errors, SetError] = useState(false);
     const [HasUser, SetHasUser] = useState(false);
+    const [Search, SetSearch] = useState();
+    function handleSubmit(e) {
+      e.preventDefault();
+      SetSearch({search: e.target.value});
+    }
+
+
     function fetchData() {  
       const URL = 'http://localhost:3000/drlink-user-views/';
       axios.get(URL)
@@ -53,7 +60,16 @@ function ListSearch() {
   if (Errors) { return <Home /> }
   return(
     <>
-    <div className={`${styles.section_search}`}><span><button className={`${styles.button_search}`}>Search</button></span></div>
+    <form onSubmit={handleSubmit}>
+      <div className="form-control">
+            <div className={`${styles.section_search}`}>
+            <span>
+            <input className="form-control" placeholder="search" type="text" name="search"  onChange={e=>{SetSearch({...Search, [e.target.name]: e.target.value})}}/>
+            <button className={`${styles.button_search}`} type ="submit" >Go</button>
+            </span>
+            </div>
+        </div>
+    </form>
     <div className={`${styles.section_containerer}`}>
     <div className={`${styles.columns_is_centered}`}>
       <label className={`${styles.labelhead}`} ><span>Tourist Approval List</span></label>
@@ -69,7 +85,13 @@ function ListSearch() {
               <td>Status</td>
         </tr>    
        
-          {Customerls.map((row, index) => (
+          {Customerls.filter((Customer) =>{
+            if(Search.search ==null) 
+              return Customer
+            else if(Customer.given_name.toLowerCase().includes(Search.search.toLowerCase()) || Customer.lastname.toLowerCase().includes(Search.search.toLowerCase())) 
+              return Customer
+            }
+          ).map((row, index) => (
             <tr>
             <td>
                 {row.given_name}

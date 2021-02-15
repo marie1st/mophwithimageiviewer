@@ -63,11 +63,11 @@ img {
 }
 
 .display_left {
-  position:absolute;
+  position:fixed;
   top: 0;
   right: 0;
   left: 0;
   margin-right: 0;
-  width: 200px;
-  height: 20px;
+  width: 250px;
+  height: 10px;
 }
