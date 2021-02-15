@@ -6,7 +6,7 @@ import {Dateformat } from '../../../dateformat';
 import Home from '../../Admin/Home/home';
 import { ModeComment } from '@material-ui/icons';
 
-function Mophlist ({}) {
+function MophlistReject ({}) {
   //const Customerlis = [{id: '1', clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '1234566668'}];
   var date = new Date();
   date.setDate(date.getDate()-91);
@@ -72,7 +72,7 @@ return(
             <td>Status</td>
       </tr>    
      
-        {Customerls.filter(Customer=>Customer.created_at > prior_start).map((row, index) => (
+        {Customerls.filter(Customer=>Customer.status > 'REJECT').map((row, index) => (
           <tr>
           <td>
               {row.given_name}
@@ -90,4 +90,4 @@ return(
 </section>
 )
 }
-export default Mophlist;
+export default MophlistReject;

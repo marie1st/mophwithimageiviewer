@@ -8,6 +8,10 @@ import MophTestind from './ManageTestCenter/testcenterlist';
 import Register from './Register/Register';
 import ListSearch from './MyTestCenter/listsearch';
 import Vaccine from './MyTestCenter/vaccine';
+import MophlistApprove from './MyTestCenter/mophlistapprove';
+import MophlistReject from './MyTestCenter/mophlistreject';
+import ManageApprove from './ManageTestCenter/manageapprove';
+import ManageReject from './ManageTestCenter/managereject';
 
 
 
@@ -25,6 +29,10 @@ export const AdminRoutes = () =>{
      <Route exact path="/register" component={Register} />
      <Route exact path="/admin/search" component={ListSearch} />
      <Route exact path="/admin/vaccine" component={Vaccine} />
+     <Route exact path="/admin/testlistapprove" component={MophlistApprove} />
+     <Route exact path="/admin/testlistreject" component={MophlistReject} />
+     <Route exact path="/admin/listapprove" component={ManageApprove}/>
+     <Route exact path="/admin/listreject" component={ManageReject} />
    </Switch>
   </>
   );

@@ -11,7 +11,7 @@ function ListSearch() {
     const [Customerls, SetCustomerls] = useState([]);
     const [Errors, SetError] = useState(false);
     const [HasUser, SetHasUser] = useState(false);
-    const [Search, SetSearch] = useState();
+    const [Search, SetSearch] = useState({search:null});
     function handleSubmit(e) {
       e.preventDefault();
       SetSearch({search: e.target.value});
@@ -88,7 +88,7 @@ function ListSearch() {
           {Customerls.filter((Customer) =>{
             if(Search.search ==null) 
               return Customer
-            else if(Customer.given_name.toLowerCase().includes(Search.search.toLowerCase()) || Customer.lastname.toLowerCase().includes(Search.search.toLowerCase())) 
+            else if(Customer.given_name.toLowerCase().includes(Search.search.toLowerCase()) || Customer.lastname.toLowerCase().includes(Search.search.toLowerCase()) || Customer.passport_no.toLowerCase().includes(Search.search.toLowerCase())) 
               return Customer
             }
           ).map((row, index) => (

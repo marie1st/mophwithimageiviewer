@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Home from '../../Admin/Home/home';
 
-function MophManage ({}) {
+function MophManageReject ({}) {
     //const Customerlis = [{id: '1', clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '1234566668'}];
     var date = new Date();
     date.setDate(date.getDate()-91);
@@ -70,7 +70,7 @@ function MophManage ({}) {
             <td>Status</td>
       </tr>   
        
-          {Customerls.filter(Customer=>Customer.created_at > prior_start).map((row, index) => (
+          {Customerls.filter(Customer=>Customer.status === 'REJECT').map((row, index) => (
             <tr>
               <Link to ={`/admin/moph/tests/${row.id}`}><td>
                   {row.clinic_registration_number}
@@ -89,4 +89,4 @@ function MophManage ({}) {
   )
 }
 
-export default MophManage;
+export default MophManageReject;
