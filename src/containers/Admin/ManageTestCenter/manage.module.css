@@ -13,7 +13,7 @@
     display:flexbox;
     background-image: url('../../../white.png');
     border-radius: 30px;
-    width: 1100px;
+    width: 1500px;
     height: auto;
     align-items: center;
     justify-content: center;
@@ -49,6 +49,7 @@
     justify-content:center;
     margin: auto;
     background-color: white;
+    width: 1500px;
 }
 .column_is_center {
     background-color: white;

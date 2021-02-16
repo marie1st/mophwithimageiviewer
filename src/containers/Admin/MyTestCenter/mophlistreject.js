@@ -83,7 +83,9 @@ return(
           <td>{row.nationality}</td>
           <td><Link to ={`lists/${row.user_id}`}>{row.passport_no}</Link></td>
           <td><Dateformat date ={row.test_date} /></td>
-          <td><td width="200"><Button color={"b"+`${row.status}`}>STATUS</Button><Button color={"b"+`${row.status_covid}`}>COVID-19</Button><Button color={"b"+`${row.status_fit}`}>FIT-TO-FLY</Button></td></td>
+          <td width="100"><Button color={"b"+`${row.status}`}>{row.status}</Button></td>
+          <td width="100"><Button color={"b"+`${row.status_covid}`}>COVID-19</Button></td>
+          <td width="100"><Button color={"b"+`${row.status_fit}`}>FIT-TO-FLY</Button></td>
        </tr> 
         ))}
     </table>

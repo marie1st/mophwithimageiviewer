@@ -81,7 +81,7 @@ function MophManage ({}) {
               <td>{row.address}</td>
               <td>{row.email}</td>
               <td>{row.phone_no}</td>
-              <td><Button color={"b"+`${row.status}`}>STATUS</Button></td>
+              <td width="200"><Button color={"b"+`${row.status}`}>{row.status}</Button></td>
            </tr>
           ))}
       </table>

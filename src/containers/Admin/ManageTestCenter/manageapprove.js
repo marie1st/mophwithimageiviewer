@@ -3,6 +3,7 @@ import styles from './manage.module.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Home from '../../Admin/Home/home';
+import {Button} from '../../../components/Button/Button';
 
 function MophManageApprove ({}) {
     //const Customerlis = [{id: '1', clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '1234566668'}];
@@ -80,7 +81,7 @@ function MophManageApprove ({}) {
               <td>{row.address}</td>
               <td>{row.email}</td>
               <td>{row.phone_no}</td>
-              <td>{row.status}</td>
+              <td width="200"><Button color={"b"+`${row.status}`}>{row.status}</Button></td>
            </tr>
           ))}
       </table>
