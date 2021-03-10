@@ -5,12 +5,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-color: orange;
+    color: orange;
   }
   
   .bAPPROVE {
     background-color: white;
-    border-color: #2899E0;
-    color: #2899E0;
+    border-color:greenyellow;
+    color:greenyellow;
   }
   
   .bREJECT{
@@ -35,7 +37,7 @@
     background: #31A5A4;
   }
   
-  .bPENDING {
+  .bPENDING APPROVAL {
     background:white;
     border-color: #EA9517;
     color: #EA9517;

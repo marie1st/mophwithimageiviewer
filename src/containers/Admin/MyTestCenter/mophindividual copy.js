@@ -43,7 +43,7 @@ function Mophindividual({match}) {
   //const UserList = [{clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '123456678', clinic_file_path: '../../../pdf-test.pdf', clinic_photo_path: '../../../clinic.png'}];
 
   function onSubmit() {
-    const URL = `http://localhost:8001/api/UserDetails/${match.params.userId}`;
+    const URL = `http://localhost:3000/drlink-user-views/${match.params.userId}`;
     SetParams(Parameters.map(item => {delete item.user_id; item.status = "APPROVE"; item.status_covid = "APPROVE"; item.status_fit = "APPROVE"; return item; }));
     console.log("param",Parameters);
     axios
@@ -179,7 +179,22 @@ if (Errors) { return <Home /> }
          <div className={`${styles.previewer}`}> <img className={`${styles.previewThumbnail}`} src={logo1} /> </div>
          <div classNmae={`${styles.previewjs}`}><div className={`${styles.previewThumbnail}`}>
          
-        
+        <img
+          src={`${user.covid_photo_file_path}`}
+          onClick={ () => openImageViewer(index) }
+          width="300"
+          key={ index }
+          style={{ margin: '150px' }}
+          alt=""/>
+  
+
+      {isViewerOpen && (
+        <ImageViewer
+          src={`${user.covid_photo_file_path}`}
+          currentIndex={ currentImage }
+          onClose={ closeImageViewer }
+        />
+      )}
            </div></div>
           <div className={`${styles.section_footer}`} >Covid-19 Test Certification Form</div>
           <div className={`${styles.section_checkbox}`}>
@@ -191,7 +206,22 @@ if (Errors) { return <Home /> }
          <div className={`${styles.previewer}`}> <img className={`${styles.previewThumbnail}`} src={logo2} /> </div>
          <div classNmae={`${styles.previewjs}`}><div className={`${styles.previewThumbnail}`}>
          
-        
+         <img
+           src={`${user.fit_photo_file_path}`}
+           onClick={ () => openImageViewer(index) }
+           width="300"
+           key={ index }
+           style={{ margin: '150px' }}
+           alt=""/>
+   
+ 
+       {isViewerOpen && (
+         <ImageViewer
+           src={`${user.fit_photo_file_path}`}
+           currentIndex={ currentImage }
+           onClose={ closeImageViewer }
+         />
+       )}
             </div></div>
           <div className={`${styles.section_footer}`} >Fit-to-Fly Form</div>
           <div className={`${styles.section_checkbox}`}>

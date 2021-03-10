@@ -13,13 +13,12 @@
 }
 
 .buttonclear {
-    background-image: url('../../../Buttonclear.png');
     width: 300px;
     height: 50px;
     font-family:sans-serif;
     font-size: 22px;
-    background: inherit;
-    color: white;
+    background: white;
+    color: #007193;
 }
 
 .buttonclear:hover {
@@ -39,15 +38,17 @@
 .dropdown_content {
     display: none;
     position: absolute;
-    background-color:inherit;
+    background-color:white;
     min-width: 160px;
     overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px #007193;
+    color: #007193;
     z-index: 1;
 }
 
 .dropdown:hover .dropdown_content {
     display: block;
+    color: black;
   }
   
 .show {display: block;}

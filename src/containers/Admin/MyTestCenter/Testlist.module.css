@@ -8,8 +8,8 @@
 
 .APPROVE {
     background-color: white;
-    border-color: rgba(8, 181, 204, 0.726);
-    color:rgba(8, 181, 204, 0.726);
+    border-color: greenyellow;
+    color: greenyellow;
 }
 .REJECT {
     background-color: white;

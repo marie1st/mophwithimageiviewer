@@ -4,6 +4,7 @@ import {Link } from 'react-router-dom';
 import axios from 'axios';
 import {Dateformat } from '../../../dateformat';
 import Home from '../../Admin/Home/home';
+import {Button} from '../../../components/Button/Button';
 
 function ListSearch() {
 
@@ -82,7 +83,9 @@ function ListSearch() {
               <td>Nationality</td>
               <td>Passport No.</td>
               <td>Test DD/MM/YYYY</td>
-              <td>Status</td>
+              <td>Tourist Info</td>
+              <td>Covid-19 Status</td>
+              <td>Fit-to-Fly Status</td>
         </tr>    
        
           {Customerls.filter((Customer) =>{
@@ -101,7 +104,9 @@ function ListSearch() {
             <td>{row.nationality}</td>
             <td><Link to ={`lists/${row.user_id}`}>{row.passport_no}</Link></td>
             <td><Dateformat date ={row.test_date} /></td>
-            <td>{row.status}</td>
+            <td width="100"><Button color={"b"+`${row.status}`}>{row.status}</Button></td>
+          <td width="100"><Button color={"b"+`${row.status_covid}`}>{row.status_covid}</Button></td>
+          <td width="100"><Button color={"b"+`${row.status_fit}`}>{row.status_fit}</Button></td>
          </tr> 
           ))}
       </table>

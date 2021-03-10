@@ -151,7 +151,23 @@ if (Errors) { return <Home /> }
          
          <div className={`${styles.preview}`}> <img className={`${styles.previewThumbnail}`} src={logo} /> </div>
          <div className={`${styles.preview}`}><div className={`${styles.previewThumbnail}`}>
-      
+         
+        <img
+          src={`${user.clinic_file_path}`}
+          onClick={ () => openImageViewer(index) }
+          width="300"
+          key={ index }
+          style={{ margin: '2px' }}
+          alt=""/>
+    
+
+      {isViewerOpen && (
+        <ImageViewer
+          src={ images }
+          currentIndex={ currentImage }
+          onClose={ closeImageViewer }
+        />
+      )}
            </div></div>
     
           <div className={`${styles.section_foot}`} >Clinic Registration File</div>

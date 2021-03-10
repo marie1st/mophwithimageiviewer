@@ -48,12 +48,12 @@ input {
 .labelhead {
     font-family: sans-serif;
     font-size: 28px;
-    color: white;
+    color: #007193;
 }
 
 .control {
     display: inline-block;
-    color: white;
+    color: #007193;
 }
 
 .checkbox {

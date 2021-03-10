@@ -33,9 +33,9 @@ handleSubmit =e=> {
 
 }
 render ( ) {
-    if(this.state.fireRedirect) {
-      return <Redirect to="/home" />
-    }
+  if(this.state.fireRedirect == true) {
+      window.location ='/home';
+  }
     return ( 
     <section className={styles.section_container}>
     <form onSubmit={this.handleSubmit} >

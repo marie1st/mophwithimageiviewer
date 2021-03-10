@@ -17,11 +17,11 @@ function Mophlist ({}) {
   const [Errors, SetError] = useState(false);
   const [HasUser, SetHasUser] = useState(false);
   function fetchData() {  
-    const URL = 'http://localhost:3000/drlink-user-views/';
+    const URL = 'http://localhost:8001/api/getDetails';
     axios.get(URL)
     .then(response => {
       console.log("response: ", response.data);
-      SetCustomerls(response.data);
+      SetCustomerls(response.data.details);
       // do something about response
     })
     .catch(err => {
@@ -86,8 +86,8 @@ return(
           <td><Link to ={`lists/${row.user_id}`}>{row.passport_no}</Link></td>
           <td><Dateformat date ={row.test_date} /></td>
           <td width="100"><Button color={"b"+`${row.status}`}>{row.status}</Button></td>
-          <td width="100"><Button color={"b"+`${row.status_covid}`}>COVID-19</Button></td>
-          <td width="100"><Button color={"b"+`${row.status_fit}`}>FIT-TO-FLY</Button></td>
+          <td width="100"><Button color={"b"+`${row.status_covid}`}>{row.status_covid}</Button></td>
+          <td width="100"><Button color={"b"+`${row.status_fit}`}>{row.status_fit}</Button></td>
        </tr> 
         ))}
     </table>
