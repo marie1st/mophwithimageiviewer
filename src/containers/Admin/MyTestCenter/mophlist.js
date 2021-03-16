@@ -17,7 +17,7 @@ function Mophlist ({}) {
   const [Errors, SetError] = useState(false);
   const [HasUser, SetHasUser] = useState(false);
   function fetchData() {  
-    const URL = 'http://localhost:8001/api/getDetails';
+    const URL = 'http://52.188.18.174:8003/api/getDetails';
     axios.get(URL)
     .then(response => {
       console.log("response: ", response.data);
@@ -36,7 +36,7 @@ function Mophlist ({}) {
         Authorization: `Bearer ${token}`
       }
     }
-    axios.get('http://localhost:8000/api/auth/user', config).then(
+    axios.get('http://52.188.18.174:8000/api/auth/user', config).then(
       res=>{
         SetHasUser(true);
       }

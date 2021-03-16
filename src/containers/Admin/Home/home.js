@@ -17,7 +17,7 @@ export default class Home extends Component {
         Authorization: `Bearer ${token}`
       }
     }
-    axios.get('http://localhost:8000/api/auth/user', config).then(
+    axios.get('http://52.188.18.174:8000/api/auth/user', config).then(
       res=>{
         this.setState({
           user: res.data

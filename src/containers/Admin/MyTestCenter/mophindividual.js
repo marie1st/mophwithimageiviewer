@@ -43,7 +43,7 @@ function Mophindividual({match}) {
   //const UserList = [{clinic_name: 'Niranam Clinic', country: 'Outside Thailand', address: 'Street of Philadelphia, PA, USA', email: 'clinicanonymous@test.clinic', phone_no: 'DIAL-AMERICA-080',  status: 'awaiting approval', clinic_registration_number: '123456678', clinic_file_path: '../../../pdf-test.pdf', clinic_photo_path: '../../../clinic.png'}];
 
   function onSubmit() {
-    const URL = `http://localhost:8001/api/UserDetails/${match.params.userId}`;
+    const URL = `http://52.188.18.174:8003/api/UserDetails/${match.params.userId}`;
     SetParams(Parameters.map(item => {delete item.user_id; item.status = "APPROVE"; item.status_covid = "APPROVE"; item.status_fit = "APPROVE"; return item; }));
     console.log("param",Parameters);
     axios
@@ -60,7 +60,7 @@ function Mophindividual({match}) {
   }
 
   function onReject () {
-    const URL = `http://localhost:8001/api/UserDetails/${match.params.userId}`;
+    const URL = `http://52.188.18.174:8003/api/UserDetails/${match.params.userId}`;
     SetParams(Parameters.map(item => {delete item.user_id; item.status = "REJECT"; item.status_covid = "APPROVE"; item.status_fit = `${FitApprove.checked}`; return item; }));
     axios
     .put(URL, Parameters[0])
@@ -76,7 +76,7 @@ function Mophindividual({match}) {
   }
 
   async function fetchData() {  
-    const URL = `http://localhost:8001/api/UserDetails/${match.params.userId}`;
+    const URL = `http://52.188.18.174:8003/api/UserDetails/${match.params.userId}`;
     axios
     .get(URL)
     .then(response => {
